@@ -1,147 +1,119 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Container, Eyebrow } from "@/components/ui";
+import Carousel from "@/components/Carousel";
+import FlagMap from "@/components/FlagMap";
 import MediaCard from "@/components/MediaCard";
-import { about, flagAnchor, flags, flagsByState, gallery, home, site } from "@/lib/content";
+import { Container, Pill } from "@/components/ui";
+import { flags, flagsByState, gallery, home } from "@/lib/content";
 
 export default function HomePage() {
   const states = flagsByState();
-  const hosted = flags.filter((f) => f.state);
+  const [lead, middle, end] = home.missionParts;
+  const counters = [
+    { value: String(flags.length), label: "Number of Flags", color: "text-orange" },
+    { value: home.namesAdded, label: "Names Added", color: "text-navy" },
+    { value: String(states.length), label: "States", color: "text-flag-red" },
+  ];
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-night text-paper">
-        <Image src={home.hero.image.src} alt={home.hero.image.alt} fill priority sizes="100vw" className="-z-10 object-cover object-[35%_center] opacity-80" />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-night via-night/70 to-night/10 md:bg-gradient-to-r md:from-night/95 md:via-night/65 md:to-night/0" />
-        <Container className="flex min-h-[min(82svh,46rem)] flex-col justify-end pb-16 pt-28 sm:pb-24">
-          <Eyebrow tone="dark">{home.hero.eyebrow}</Eyebrow>
-          <h1 className="mt-4 max-w-3xl font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl lg:text-8xl">{home.hero.title}</h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/85 sm:text-xl">{about.history.text}</p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Button href="/add-name" variant="gold">Add a Name</Button>
-            <Button href="/donate" variant="ghost-dark">Donate</Button>
+      {/* Hero: the flags on the pole, as on the original home page. */}
+      <section className="on-dark relative isolate flex min-h-[min(88svh,52rem)] items-center justify-center overflow-hidden bg-hero text-center text-white">
+        <Image src={home.hero.image.src} alt={home.hero.image.alt} fill priority sizes="100vw" className="-z-10 object-cover object-[30%_center]" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-black/35" />
+        <div className="px-5 pb-10 pt-28">
+          <p className="accent text-xl sm:text-[1.5625rem]">{home.hero.eyebrow}</p>
+          <h1 className="mt-1 text-[3.25rem] font-medium leading-[1] sm:text-7xl lg:text-[5.5rem]">{home.hero.title}</h1>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-14">
+            <Pill href="/add-name" variant="white" size="lg">Add a Name</Pill>
+            <Pill href="/donate" variant="glass" size="lg">
+              <span className="px-4">Donate</span>
+            </Pill>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Mission */}
+      <section className="py-20 text-center sm:py-24">
+        <Container className="max-w-[1000px]">
+          <h2 className="accent text-4xl sm:text-[2.75rem]">{home.missionTitle}</h2>
+          <p className="mx-auto mt-8 max-w-[52rem] text-[1.375rem] font-medium leading-snug sm:text-[1.75rem]">
+            {lead} <span className="text-[#6b6b6b]">{middle}</span> {end}
+          </p>
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <Pill href="/about">Learn More</Pill>
+            <Pill href="/contact">Sponsor a Flag</Pill>
           </div>
         </Container>
       </section>
 
-      <section className="border-b border-line bg-paper">
-        <Container className="grid grid-cols-3">
-          {[
-            { value: home.namesAdded, label: "Names added" },
-            { value: String(hosted.length), label: "Flags with a host" },
-            { value: String(states.length), label: "Host states" },
-          ].map((s) => (
-            <div key={s.label} className="border-l border-line py-6 pl-3 first:border-l-0 first:pl-0 sm:py-8 sm:pl-8">
-              <p className="font-serif text-3xl tabular-nums sm:text-5xl">{s.value}</p>
-              <p className="mt-1 text-[11px] font-medium uppercase leading-snug tracking-[0.12em] text-muted sm:text-sm sm:tracking-[0.14em]">{s.label}</p>
-            </div>
-          ))}
-        </Container>
-      </section>
+      {/* The full-width band of Flag 005, fading to gray as on the original. */}
+      <div className="relative h-[clamp(16rem,39vw,31rem)] overflow-hidden bg-[#a7a9ad]">
+        <Image src={home.band.src} alt={home.band.alt} fill sizes="100vw" className="object-cover object-[center_88%]" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-b from-[#a7a9ad]/0 via-[#a7a9ad]/85 to-[#a7a9ad]" />
+      </div>
 
-      <section className="py-20 sm:py-28">
-        <Container className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <Eyebrow>{home.missionTitle}</Eyebrow>
-            <p className="mt-4 font-serif text-2xl leading-snug sm:text-4xl">{site.mission}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/about" variant="secondary">Learn More</Button>
-              <Button href="/contact">Sponsor a Flag</Button>
-            </div>
-          </div>
-          <figure className="relative aspect-[4/3] overflow-hidden rounded-lg bg-night">
-            <Image src="/images/flags-on-pole.jpg" alt="Two flags flying from a flagpole against a pale sky." fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
-          </figure>
-        </Container>
-      </section>
-
-      <section className="border-y border-line bg-white py-20 sm:py-28" aria-labelledby="current-flags">
+      {/* Current Flags */}
+      <section className="pb-20 pt-24 sm:pb-28 sm:pt-32" aria-labelledby="current-flags">
         <Container>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div className="max-w-2xl">
-              <Eyebrow>Flag Registry</Eyebrow>
-              <h2 id="current-flags" className="mt-3 font-serif text-4xl tracking-tight sm:text-5xl">{home.flagsIntro.title}</h2>
-              <p className="mt-4 text-lg text-muted">{home.flagsIntro.text}</p>
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 id="current-flags" className="text-[2.75rem] font-medium leading-none sm:text-[3.125rem]">{home.flagsIntro.title}</h2>
+            <p className="mt-4 text-lg leading-snug sm:text-xl">{home.flagsIntro.text}</p>
+            <h3 className="mt-10 text-2xl font-medium">{home.registryCta.title}</h3>
+            <p className="mt-2 text-lg leading-snug sm:text-xl">{home.registryCta.text}</p>
+            <div className="mt-6">
+              <Pill href={home.registryCta.href}>{home.registryCta.label}</Pill>
             </div>
-            <Button href="/flags" variant="secondary">See every flag</Button>
+          </div>
+          <div className="mt-16">
+            <FlagMap states={states} />
           </div>
 
-          <div className="mt-12 grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
-            {states.map(({ state, flags: list }) => (
-              <div key={state} className={list.length > 3 ? "md:col-span-2 lg:col-span-2 lg:row-span-2" : ""}>
-                <h3 className="flex items-baseline justify-between border-b-2 border-ink pb-2">
-                  <span className="font-serif text-2xl">{state}</span>
-                  <span className="text-sm font-medium text-muted">{list.length} {list.length === 1 ? "flag" : "flags"}</span>
-                </h3>
-                <ul className={`divide-y divide-line ${list.length > 3 ? "sm:grid sm:grid-cols-2 sm:gap-x-8 sm:divide-y-0" : ""}`}>
-                  {list.map((f) => (
-                    <li key={f.number} className={list.length > 3 ? "sm:border-b sm:border-line" : ""}>
-                      <Link href={`/flags#${flagAnchor(f.number)}`} className="group flex gap-4 py-3.5">
-                        <span className="w-12 shrink-0 pt-0.5 font-mono text-sm font-semibold text-red">{f.number}</span>
-                        <span className="min-w-0">
-                          <span className="block font-medium group-hover:underline">{f.host}</span>
-                          <span className="block text-sm text-muted">
-                            {f.city} · {f.dedicated === "Pending" ? "Dedication pending" : `Dedicated ${f.dedicated}`}
-                          </span>
-                          {f.memorial && <span className="mt-1 block text-sm text-ink">In memory of {f.memorial.name}</span>}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+          <dl className="mt-24 grid gap-12 text-center sm:grid-cols-3 sm:gap-6">
+            {counters.map((c) => (
+              <div key={c.label} className="flex flex-col-reverse">
+                <dt className="mt-3 text-lg text-ink-2">{c.label}</dt>
+                <dd className={`text-6xl tabular-nums sm:text-[3.25rem] md:text-6xl lg:text-7xl ${c.color}`}>{c.value}</dd>
               </div>
             ))}
-          </div>
-
-          <div className="mt-16 flex flex-col gap-6 rounded-lg bg-navy p-8 text-paper sm:flex-row sm:items-center sm:justify-between sm:p-10">
-            <div>
-              <h3 className="font-serif text-2xl sm:text-3xl">{home.registryCta.title}</h3>
-              <p className="mt-2 max-w-xl text-paper/80">{home.registryCta.text}</p>
-            </div>
-            <Button href={home.registryCta.href} variant="gold">{home.registryCta.label}</Button>
-          </div>
+          </dl>
         </Container>
       </section>
 
-      <section className="py-20 sm:py-28" aria-labelledby="press">
+      {/* Sponsors */}
+      <section className="pb-24" aria-labelledby="sponsors">
         <Container>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <Eyebrow>Gallery</Eyebrow>
-              <h2 id="press" className="mt-3 font-serif text-4xl tracking-tight sm:text-5xl">In the news</h2>
-            </div>
-            <Button href="/gallery" variant="secondary">See all</Button>
+          <h2 id="sponsors" className="text-center text-3xl font-medium leading-tight sm:text-[2.25rem]">
+            {home.sponsorsTitle[0]} <span className="text-[#6b6b6b]">{home.sponsorsTitle[1]}</span>
+          </h2>
+          <div className="mx-auto mt-12 max-w-[1000px] px-10">
+            <Carousel label="Our sponsors" itemClass="basis-full sm:basis-[calc((100%-2.5rem)/3)] lg:basis-[calc((100%-6.25rem)/6)]" arrows="sides" dots="flag">
+              {home.sponsors.map((s) => (
+                <div key={s.name} className="flex h-32 items-center justify-center">
+                  <Image src={s.src} alt={s.name} width={s.width} height={s.height} sizes="160px" loading="eager" className="max-h-28 w-auto max-w-[9.5rem] object-contain" />
+                </div>
+              ))}
+            </Carousel>
           </div>
-          <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-8 lg:grid-cols-4">
-            {gallery.media.slice(1, 5).map((m) => (
-              <li key={m.url}><MediaCard item={m} /></li>
-            ))}
-          </ul>
         </Container>
       </section>
 
-      <section className="border-t border-line bg-white py-20 sm:py-24" aria-labelledby="sponsors">
+      {/* Gallery */}
+      <section className="pb-24" aria-labelledby="gallery">
         <Container>
-          <h2 id="sponsors" className="text-center font-serif text-3xl tracking-tight sm:text-4xl">{home.sponsorsTitle}</h2>
-          <ul className="mx-auto mt-12 grid max-w-6xl grid-cols-2 items-center gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
-            {home.sponsors.map((s) => (
-              <li key={s.name} className="flex h-24 items-center justify-center">
-                <Image src={s.src} alt={s.name} width={s.width} height={s.height} sizes="160px" className="max-h-24 w-auto max-w-[9rem] object-contain" />
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
-
-      <section className="bg-night py-20 text-paper sm:py-24">
-        <Container className="flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-2xl">
-            <h2 className="font-serif text-4xl tracking-tight sm:text-5xl">Every name is a life lived.</h2>
-            <p className="mt-4 text-lg text-paper/80">Registering a name is completely free. Donations keep the flags flying across the country.</p>
+          <div className="flex items-center justify-between gap-4">
+            <h2 id="gallery" className="text-4xl font-medium sm:text-5xl">Gallery</h2>
+            <div className="flex items-center gap-4">
+              <Image src="/images/logo.png" alt="" width={68} height={68} className="hidden size-14 sm:block sm:size-[68px]" />
+              <Link href="/gallery" className="text-xl font-medium underline underline-offset-4 sm:text-2xl">See All</Link>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Button href="/add-name" variant="gold">Add a Name</Button>
-            <Button href="/donate" variant="ghost-dark">Donate</Button>
+          <div className="mt-10">
+            <Carousel label="Gallery" itemClass="basis-[82%] sm:basis-[calc((100%-1.25rem)/2)] lg:basis-[calc((100%-2.5rem)/3)]">
+              {gallery.media.slice(1).map((m) => (
+                <MediaCard key={m.url} item={m} />
+              ))}
+            </Carousel>
           </div>
         </Container>
       </section>

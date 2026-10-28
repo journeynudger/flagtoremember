@@ -3,95 +3,124 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { site } from "@/lib/content";
+
+/** Pages whose first section is a full-bleed photo the header sits on, as on the original. */
+const OVER_PHOTO = ["/", "/about"];
+
+// The original menu: round logo on the left, a menu button on the right at every width, and a
+// white panel that slides in from the right with the pages and a CONTACT button.
+const MENU = [
+  { label: "Flags", href: "/flags" },
+  { label: "About", href: "/about" },
+  { label: "Process", href: "/process" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Name Registry", href: "/name-registry" },
+  { label: "Add Name", href: "/add-name" },
+  { label: "Donate", href: "/donate" },
+];
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [lastPath, setLastPath] = useState(pathname);
+  const button = useRef<HTMLButtonElement>(null);
+  const panel = useRef<HTMLDivElement>(null);
   if (pathname !== lastPath) {
     setLastPath(pathname);
     setOpen(false);
   }
+  const overPhoto = OVER_PHOTO.includes(pathname);
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    panel.current?.querySelector<HTMLElement>("a,button")?.focus();
+    const trigger = button.current;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Tab" && panel.current) {
+        const items = [...panel.current.querySelectorAll<HTMLElement>("a,button")];
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+      trigger?.focus();
+    };
   }, [open]);
 
-  const current = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
-
   return (
-    <header className="sticky top-0 z-40 bg-night/95 text-paper backdrop-blur supports-[backdrop-filter]:bg-night/85">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4 sm:px-6 lg:h-20 lg:px-8">
-        <Link href="/" className="mr-auto flex shrink-0 items-center gap-3" aria-label={`${site.name}, home`}>
-          <Image src="/images/logo.png" alt="" width={44} height={44} className="size-10 lg:size-11" priority />
-          <span className="font-serif text-lg leading-none tracking-tight lg:text-xl">{site.name}</span>
+    <header className={`${overPhoto ? "absolute inset-x-0 top-0 bg-white/25 backdrop-blur-[2px]" : "relative bg-white"} z-40`}>
+      <div className="flex h-[88px] items-center justify-between px-4 sm:h-[104px] sm:px-6">
+        <Link href="/" aria-label={`${site.name}, home`} className="block">
+          <Image src="/images/logo.png" alt="" width={68} height={68} priority className="size-14 sm:size-[68px]" />
         </Link>
-
-        <nav aria-label="Main" className="hidden xl:block">
-          <ul className="flex items-center gap-6 text-[15px]">
-            {site.nav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={current(item.href) ? "page" : undefined}
-                  className="py-2 text-paper/85 underline-offset-[10px] decoration-gold decoration-2 transition-colors hover:text-paper aria-[current=page]:text-paper aria-[current=page]:underline"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="hidden items-center gap-2 sm:flex">
-          <Link href="/donate" className="rounded-md border border-paper/30 px-4 py-2 text-[15px] font-semibold transition-colors hover:border-paper">
-            Donate
-          </Link>
-          <Link href="/add-name" className="rounded-md bg-gold px-4 py-2 text-[15px] font-semibold text-ink transition-colors hover:bg-gold-soft">
-            Add a Name
-          </Link>
-        </div>
-
         <button
+          ref={button}
           type="button"
-          className="-mr-2 inline-flex size-11 items-center justify-center rounded-md xl:hidden"
+          onClick={() => setOpen(true)}
           aria-expanded={open}
-          aria-controls="mobile-nav"
-          onClick={() => setOpen((o) => !o)}
+          aria-controls="site-menu"
+          className="inline-flex size-12 items-center justify-center rounded-full text-ink-2"
         >
-          <span className="sr-only">{open ? "Close menu" : "Menu"}</span>
-          <svg aria-hidden viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-            {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+          <span className="sr-only">Menu</span>
+          <svg aria-hidden viewBox="0 0 24 24" className="size-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16" />
           </svg>
         </button>
       </div>
 
-      <div id="mobile-nav" hidden={!open} className="border-t border-paper/10 xl:hidden">
-        <nav aria-label="Main" className="mx-auto max-w-7xl px-4 pb-6 pt-2 sm:px-6 lg:px-8">
-          <ul className="divide-y divide-paper/10">
-            {site.nav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={current(item.href) ? "page" : undefined}
-                  className="flex items-center justify-between py-3.5 text-lg aria-[current=page]:text-gold-soft"
-                >
-                  {item.label}
-                  <span aria-hidden className="text-paper/70">→</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:hidden">
-            <Link href="/donate" className="rounded-md border border-paper/30 px-4 py-3 text-center font-semibold">Donate</Link>
-            <Link href="/add-name" className="rounded-md bg-gold px-4 py-3 text-center font-semibold text-ink">Add a Name</Link>
-          </div>
-        </nav>
+      <div className={`fixed inset-0 z-50 overflow-hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
+        <div onClick={() => setOpen(false)} className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`} />
+        <div
+          ref={panel}
+          id="site-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+          inert={!open}
+          className={`absolute inset-y-0 right-0 flex w-[min(22rem,86vw)] flex-col overflow-y-auto bg-white px-6 pb-10 pt-5 shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none ${open ? "translate-x-0" : "translate-x-full"}`}
+        >
+          <button type="button" onClick={() => setOpen(false)} className="ml-auto inline-flex size-11 items-center justify-center text-ink">
+            <span className="sr-only">Close menu</span>
+            <svg aria-hidden viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+          <nav aria-label="Main" className="mt-8">
+            <ul className="border-t border-ink">
+              {MENU.map((item) => (
+                <li key={item.href} className="border-b border-ink">
+                  <Link
+                    href={item.href}
+                    aria-current={pathname === item.href ? "page" : undefined}
+                    className="block py-3 text-xl font-medium text-ink hover:text-red aria-[current=page]:text-red"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <Link
+            href="/contact"
+            className="mt-10 block rounded-md border border-ink py-3 text-center text-base font-medium uppercase tracking-wide text-ink hover:bg-ink hover:text-white"
+          >
+            Contact
+          </Link>
+        </div>
       </div>
     </header>
   );

@@ -1,40 +1,48 @@
 @import "tailwindcss";
 
-/* Colors from the foundation's logo: the black ring, the flag's navy union and red stripes,
-   and the sunset gold (only ever on dark grounds, where it passes contrast). */
+/* The original flagtoremember.com look (Divi theme), measured from the live site on 2026-10-27:
+   white pages, Inter headings with an italic Playfair Display accent, pill buttons, gray pill
+   fields, the map's teal, the counters' orange / navy / red, and the form red. */
 :root {
-  --paper: #f6f3ec;
-  --paper-deep: #ece6da;
-  --ink: #16181d;
-  --muted: #565b64;
-  --line: #d9d1c1;
-  --navy: #1c2a48;
-  --navy-deep: #121c33;
-  --night: #0f1115;
-  --red: #a3262a;
-  --gold: #e3a83b;
-  --gold-soft: #f0c46e;
+  --ink: #000000;
+  --ink-2: #333333;
+  --muted: #5f5f5f;
+  --line: #d9d9d9;
+  --soft: #f6f6f6;
+  --field: #e6e6e6;
+  --field-ink: #474747;
+  --red: #e02b20;
+  --red-deep: #b9221a;
+  --orange: #f55000;
+  --navy: #363c55;
+  --flag-red: #dc281e;
+  --teal: 60 162 162;
+  --teal-edge: #235b6e;
+  --hero: #2b2f38;
 }
 
 @theme inline {
-  --color-paper: var(--paper);
-  --color-paper-deep: var(--paper-deep);
   --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
   --color-muted: var(--muted);
   --color-line: var(--line);
-  --color-navy: var(--navy);
-  --color-navy-deep: var(--navy-deep);
-  --color-night: var(--night);
+  --color-soft: var(--soft);
+  --color-field: var(--field);
+  --color-field-ink: var(--field-ink);
   --color-red: var(--red);
-  --color-gold: var(--gold);
-  --color-gold-soft: var(--gold-soft);
-  --font-serif: var(--font-serif-face), Georgia, serif;
-  --font-sans: var(--font-sans-face), system-ui, sans-serif;
+  --color-red-deep: var(--red-deep);
+  --color-orange: var(--orange);
+  --color-navy: var(--navy);
+  --color-flag-red: var(--flag-red);
+  --color-teal-edge: var(--teal-edge);
+  --color-hero: var(--hero);
+  --font-sans: var(--font-inter), Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 7rem;
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -43,9 +51,10 @@ html {
 }
 
 body {
-  background: var(--paper);
+  background: #fff;
   color: var(--ink);
   font-family: var(--font-sans);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -59,25 +68,42 @@ p {
   text-wrap: pretty;
 }
 
-::selection {
-  background: var(--navy);
-  color: var(--paper);
-}
-
 :focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--teal-edge);
   outline-offset: 3px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
-.on-light :focus-visible,
-.on-light:focus-visible {
-  outline-color: var(--navy);
+.on-dark :focus-visible {
+  outline-color: #fff;
 }
 
-/* A thin red-white-navy rule, drawn from the flag's stripes. */
-.stripe-rule {
-  height: 4px;
-  background: linear-gradient(90deg, var(--red) 0 33.3%, var(--paper) 33.3% 66.6%, var(--navy) 66.6%);
+/* The italic accent the original sets inside headings ("Flag Registry", "Our Mission"). */
+.accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Accordions (Divi toggles): rounded light-gray cards with a plus that turns to a minus. */
+.toggle > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.toggle > summary::-webkit-details-marker {
+  display: none;
+}
+.toggle .toggle__sign::before {
+  content: "+";
+}
+.toggle[open] .toggle__sign::before {
+  content: "\2212";
+}
+
+.scroll-row {
+  scrollbar-width: none;
+}
+.scroll-row::-webkit-scrollbar {
+  display: none;
 }
 
 .grecaptcha-badge {

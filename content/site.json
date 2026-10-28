@@ -6,35 +6,107 @@
   "mission": "To honor the legacy of our fallen heroes by creating memorial flags that preserve their names, tell their stories, and inspire communities to remember their service and sacrifices.",
   "ein": "88-1652584",
   "email": "anthony@flagtoremember.com",
-  "phone": { "display": "(206) 707-2247", "tel": "+12067072247" },
+  "phone": {
+    "display": "(206) 707-2247",
+    "tel": "+12067072247"
+  },
   "social": [
-    { "label": "Facebook", "url": "https://www.facebook.com/flagtoremember/" },
-    { "label": "Instagram", "url": "https://www.instagram.com/flagtoremember/" }
+    {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/flagtoremember/"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/flagtoremember/"
+    }
   ],
   "nav": [
-    { "label": "Flags", "href": "/flags" },
-    { "label": "About", "href": "/about" },
-    { "label": "Process", "href": "/process" },
-    { "label": "Gallery", "href": "/gallery" },
-    { "label": "Name Registry", "href": "/name-registry" },
-    { "label": "Contact", "href": "/contact" }
+    {
+      "label": "Flags",
+      "href": "/flags"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Process",
+      "href": "/process"
+    },
+    {
+      "label": "Gallery",
+      "href": "/gallery"
+    },
+    {
+      "label": "Name Registry",
+      "href": "/name-registry"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
   ],
   "actions": [
-    { "label": "Add a Name", "href": "/add-name" },
-    { "label": "Donate", "href": "/donate" }
+    {
+      "label": "Add a Name",
+      "href": "/add-name"
+    },
+    {
+      "label": "Donate",
+      "href": "/donate"
+    }
   ],
   "footer": [
-    { "title": "Flags", "links": [
-      { "label": "Add a Name", "href": "/add-name" },
-      { "label": "Donate", "href": "/donate" },
-      { "label": "Name Registry", "href": "/name-registry" },
-      { "label": "Flag Registry", "href": "/flags" }
-    ] },
-    { "title": "About", "links": [
-      { "label": "Learn More", "href": "/about" },
-      { "label": "Process", "href": "/process" },
-      { "label": "FAQ", "href": "/contact#faq" },
-      { "label": "Sponsor a Flag", "href": "/contact" }
-    ] }
+    {
+      "title": "Flags",
+      "links": [
+        {
+          "label": "Add a Name",
+          "href": "/add-name"
+        },
+        {
+          "label": "Donate",
+          "href": "/donate"
+        },
+        {
+          "label": "Name Registry",
+          "href": "/name-registry"
+        }
+      ]
+    },
+    {
+      "title": "About",
+      "links": [
+        {
+          "label": "Learn More",
+          "href": "/about"
+        },
+        {
+          "label": "FAQ",
+          "href": "/contact#faq"
+        },
+        {
+          "label": "Sponsor",
+          "href": "/contact"
+        }
+      ]
+    },
+    {
+      "title": "Connect",
+      "links": [
+        {
+          "label": "Contact",
+          "href": "/contact"
+        },
+        {
+          "label": "Facebook",
+          "href": "https://www.facebook.com/flagtoremember/"
+        },
+        {
+          "label": "Instagram",
+          "href": "https://www.instagram.com/flagtoremember/"
+        }
+      ]
+    }
   ]
 }

@@ -46,11 +46,14 @@ export interface Flag {
 
 export interface Home {
   hero: { eyebrow: string; title: string; image: Img };
+  band: Img;
   missionTitle: string;
+  /** The mission sentence in three parts: the middle one is set in gray, as on the original. */
+  missionParts: string[];
   flagsIntro: { title: string; text: string };
   registryCta: { title: string; text: string; label: string; href: string };
   namesAdded: string;
-  sponsorsTitle: string;
+  sponsorsTitle: string[];
   sponsors: { name: string; src: string; width: number; height: number }[];
 }
 
@@ -99,6 +102,8 @@ export interface Gallery {
   title: string;
   lede: string;
   media: MediaItem[];
+  pressOrder: string[];
+  videoOrder: string[];
   journey: {
     title: string;
     lede: string;
@@ -150,16 +155,27 @@ export const donate: Donate = donateData satisfies Donate;
 export const registry: Registry = registryData satisfies Registry;
 export const addName: AddName = addNameData satisfies AddName;
 
-/** Flags with a host location, grouped by state, largest state first (the old home page's map order). */
+/** The old home page map's state order. */
+const STATE_ORDER = ["North Carolina", "Florida", "Georgia", "California", "Colorado", "Virginia", "Ohio"];
+
+/** Flags with a host location, grouped by state in the old map's order (a new state goes last). */
 export function flagsByState() {
   const groups = new Map<string, Flag[]>();
   for (const f of flags) {
     if (!f.state) continue;
     groups.set(f.state, [...(groups.get(f.state) ?? []), f]);
   }
-  return [...groups.entries()]
-    .map(([state, list]) => ({ state, flags: list }))
-    .sort((a, b) => b.flags.length - a.flags.length);
+  const rank = (s: string) => (STATE_ORDER.includes(s) ? STATE_ORDER.indexOf(s) : STATE_ORDER.length);
+  return [...groups.entries()].map(([state, list]) => ({ state, flags: list })).sort((a, b) => rank(a.state) - rank(b.state));
+}
+
+/** The Gallery page's Press or Videos row, in the old page's order. A URL with no media item fails the build. */
+export function mediaRow(order: string[]) {
+  return order.map((url) => {
+    const item = gallery.media.find((m) => m.url === url);
+    if (!item) throw new Error(`gallery.json: no media item for ${url}`);
+    return item;
+  });
 }
 
 export const flagAnchor = (n: string) => `flag-${n.toLowerCase()}`;

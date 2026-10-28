@@ -9,6 +9,19 @@ price or the FAQ, edit the JSON and push.
 
 Keys that start with `_` (`_source`, `_note`, `_fixed`) are records only. Nothing renders them.
 
+## Design: the original look, tidied
+
+Matches the live WordPress site as measured on 2026-10-27 (stills and computed styles): white pages, Inter
+headings with an italic Playfair Display accent word over a thin rule ("Flag *Registry*"), pill buttons, round logo
+and a menu button at every width opening a white panel from the right, "+" toggles (Process steps, Flag Registry,
+FAQ, Our Founder / Our Vision), gray pill fields on Contact and the footer signup, Gravity Forms' red progress bar
+and square red Next on Add a Name, the home map (its SVG, `content/us-map.json`) with teal state chips, the orange /
+navy / red counters, and the light four-column footer. Colors live in `app/globals.css`.
+
+Changed on purpose: body text 16–18px instead of 14px, darker grays and reds where the original failed contrast,
+real headings inside toggles, sliders that never move on their own (arrows, dots, swipe), the Press and Videos rows
+plus the old Our Journey page's events and photos on Gallery.
+
 ## Forms: still Gravity Forms, behind a cleaner front
 
 The three forms keep their Gravity Forms backend on WordPress, so entries, notification emails and any feeds
@@ -58,7 +71,7 @@ checks against a server started with `FORMS_MODE=validate`. Never point it at a 
 | `content/donate.json`, `content/add-name.json`, `content/registry.json` | Those pages. The registry is the same Airtable shared view, embedded as before. |
 | `public/images/*` | WordPress uploads, never enlarged. Raw pull (every page's HTML, REST JSON, all used images, form schemas) is in `~/Downloads/Projects/flagtoremember-raw` (outside the repo). |
 
-Home stats are counted from `flags.json` (18 flags with a host, 7 host states), not the old counters.
+Home counters are counted from `flags.json` (19 flags, 7 states) instead of the old fixed 50 and 4; "1,200+ names" is kept as published.
 
 Dropped on purpose: the WordPress "Hello world!" post, its comment form and search box; the Our Team page
 (four copies of the same card); the logo carousels (now a static grid). Old URLs `/our-journey`, `/our-team`,

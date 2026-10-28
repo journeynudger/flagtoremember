@@ -25,13 +25,19 @@ interface Props {
   afterSuccess?: ReactNode;
   /** Compact single-line layout (footer signup). */
   inline?: boolean;
-  tone?: "light" | "dark";
+  /** "pill": the original Contact form's gray rounded fields. "plain": Gravity Forms' white fields (Add a Name). */
+  look?: "pill" | "plain";
 }
 
-const inputCls =
-  "block w-full min-w-0 rounded-md border border-line bg-white px-3.5 py-3 text-base text-ink shadow-[inset_0_1px_1px_rgb(0_0_0/0.04)] placeholder:text-muted/80 transition-colors focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/25 aria-[invalid=true]:border-red aria-[invalid=true]:ring-red/20";
+const fieldBase =
+  "block w-full min-w-0 text-base text-field-ink placeholder:text-[#6b6b6b] transition-shadow focus:outline-none focus:ring-2 focus:ring-teal-edge/50 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red/70 sm:text-lg";
+const fieldLook = {
+  pill: `${fieldBase} rounded-[25px] border-0 bg-field/80 px-5 py-2.5`,
+  plain: `${fieldBase} rounded-md border border-[#bdbdbd] bg-white px-3.5 py-2.5 text-ink focus:border-teal-edge`,
+};
 
-export default function Form({ def, pageContent, afterSuccess, inline = false, tone = "light" }: Props) {
+export default function Form({ def, pageContent, afterSuccess, inline = false, look = "plain" }: Props) {
+  const inputCls = fieldLook[look];
   const uid = useId();
   const pages = def.pages?.length ?? 1;
   const [values, setValues] = useState<Values>({});
@@ -154,8 +160,8 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, t
 
   if (status === "done") {
     return (
-      <div ref={doneRef} tabIndex={-1} role="status" className={`rounded-lg outline-none ${inline ? "" : "border border-line bg-white p-6 sm:p-8"}`}>
-        <p className={`font-serif ${inline ? "text-lg" : "text-2xl"} ${tone === "dark" ? "text-paper" : "text-ink"}`}>{message}</p>
+      <div ref={doneRef} tabIndex={-1} role="status" className={`outline-none ${inline ? "" : "rounded-[25px] bg-soft p-6 text-center sm:p-10"}`}>
+        <p className={`${inline ? "text-base font-medium" : "text-2xl font-medium sm:text-3xl"} text-ink`}>{message}</p>
         {afterSuccess && <div className="mt-5">{afterSuccess}</div>}
       </div>
     );
@@ -167,7 +173,7 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, t
   const sending = status === "sending";
 
   const disclosure = (
-    <p className={`text-xs leading-relaxed ${tone === "dark" ? "text-paper/70" : "text-muted"}`}>
+    <p className="text-xs leading-relaxed text-muted">
       Protected by reCAPTCHA. Google’s{" "}
       <a className="underline underline-offset-2" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>{" "}
       and{" "}
@@ -192,7 +198,7 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, t
       <form noValidate onSubmit={submit} onFocus={warmUp} className="relative">
         {honeypot}
         <label htmlFor={fid(f)} className="sr-only">{f.label}</label>
-        <div className="flex gap-2">
+        <div className="flex">
           <input
             id={fid(f)}
             type="email"
@@ -203,22 +209,22 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, t
             onChange={(e) => change(f, `input_${f.id}`, e.target.value)}
             aria-invalid={err ? true : undefined}
             aria-describedby={err ? `${fid(f)}-err` : undefined}
-            className={`${inputCls} py-2.5`}
+            className="block w-full min-w-0 rounded-l-[25px] border-0 bg-field px-4 py-2 text-[15px] text-field-ink placeholder:text-[#6b6b6b] focus:outline-none focus:ring-2 focus:ring-teal-edge/50 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red/70"
           />
           <button
             type="submit"
             disabled={sending}
-            className="shrink-0 rounded-md bg-gold px-4 py-2.5 font-semibold text-ink transition-colors hover:bg-gold-soft disabled:opacity-60"
+            className="shrink-0 rounded-r-[25px] bg-field px-4 text-lg text-field-ink transition-colors hover:bg-[#d4d4d4] disabled:opacity-60"
           >
-            {sending ? "Sending…" : def.submitLabel}
+            <span aria-hidden>{sending ? "…" : "➝"}</span>
+            <span className="sr-only">{sending ? "Sending" : def.submitLabel}</span>
           </button>
         </div>
         <div aria-live="polite">
-          {err && <p id={`${fid(f)}-err`} className="mt-2 text-sm font-medium text-gold-soft">{err}</p>}
-          {!err && message && <p className="mt-2 text-sm font-medium text-gold-soft">{message}</p>}
+          {err && <p id={`${fid(f)}-err`} className="mt-2 text-sm font-medium text-red">{err}</p>}
+          {!err && message && <p className="mt-2 text-sm font-medium text-red">{message}</p>}
         </div>
         <div ref={captchaBox} className="hidden" />
-        <div className="mt-3">{disclosure}</div>
       </form>
     );
   }
@@ -235,30 +241,32 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, t
     <form noValidate onSubmit={submit} onFocus={warmUp} className="relative" aria-busy={sending}>
       {honeypot}
       {pages > 1 && (
-        <ol className="mb-8 grid grid-cols-3 gap-2" aria-label="Progress">
-          {def.pages!.map((p, i) => (
-            <li key={p.title} aria-current={i + 1 === page ? "step" : undefined}>
-              <span className={`block h-1 rounded-full ${i + 1 <= page ? "bg-navy" : "bg-line"}`} />
-              <span className={`mt-2 hidden text-xs font-medium uppercase tracking-[0.14em] sm:block ${i + 1 === page ? "text-navy" : "text-muted"}`}>
-                {p.title}
-              </span>
-            </li>
-          ))}
-        </ol>
-      )}
-
-      {pages > 1 && (
-        <div className="mb-6">
+        <>
+          {/* Gravity Forms' progress bar, in the original's red. */}
           <p className="text-sm font-medium text-muted">Step {page} of {pages}</p>
-          <h2 ref={headingRef} tabIndex={-1} className="mt-1 font-serif text-2xl text-ink outline-none sm:text-3xl">
-            {def.pages![page - 1].title}
-          </h2>
-          <p className="mt-2 text-muted">{def.pages![page - 1].intro}</p>
-        </div>
+          <div
+            role="progressbar"
+            aria-label="Form progress"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round((page / pages) * 100)}
+            className="mt-1.5 h-[21px] overflow-hidden rounded-full bg-[#e8e8e8]"
+          >
+            <div className="flex h-full items-center justify-end rounded-full bg-red pr-2 text-xs font-medium text-white transition-[width] duration-300" style={{ width: `${Math.round((page / pages) * 100)}%` }}>
+              {Math.round((page / pages) * 100)}%
+            </div>
+          </div>
+          <div className="mb-6 mt-8">
+            <h2 ref={headingRef} tabIndex={-1} className="text-2xl font-medium text-ink outline-none sm:text-[1.75rem]">
+              {def.pages![page - 1].title}
+            </h2>
+            <p className="mt-2 text-base leading-relaxed text-ink-2 sm:text-lg">{def.pages![page - 1].intro}</p>
+          </div>
+        </>
       )}
 
       {summary && (errorList.length > 0 || message) && (
-        <div ref={summaryRef} tabIndex={-1} role="alert" className="mb-6 rounded-md border-l-4 border-red bg-red/5 p-4 outline-none">
+        <div ref={summaryRef} tabIndex={-1} role="alert" className="mb-6 rounded-[18px] border-2 border-red bg-red/5 p-4 text-left outline-none sm:p-5">
           <p className="font-semibold text-red">
             {errorList.length ? `Please fix ${errorList.length === 1 ? "this" : `these ${errorList.length}`} before continuing:` : message}
           </p>
@@ -287,8 +295,8 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, t
       <div className="space-y-6">
         {blocks.map((b, i) =>
           b.group ? (
-            <fieldset key={b.group} className="rounded-lg border border-line bg-white p-5 sm:p-6">
-              <legend className="px-2 font-serif text-lg text-ink">{b.group}</legend>
+            <fieldset key={b.group} className="rounded-[25px] bg-soft px-5 pb-6 pt-2 sm:px-7 sm:pb-7">
+              <legend className="float-left mb-4 w-full pt-4 text-xl font-medium text-ink">{b.group}</legend>
               <div className="grid gap-5 sm:grid-cols-2">
                 {b.fields.map((f) => (
                   <div key={f.id} className={f.type === "text" ? "sm:col-span-2" : ""}>
@@ -309,22 +317,31 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, t
 
       <div ref={captchaBox} className="hidden" />
 
-      <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-line pt-6">
+      <div className={`mt-8 flex flex-wrap items-center gap-3 ${look === "pill" ? "justify-center" : ""}`}>
         {page > 1 && (
-          <button type="button" onClick={back} disabled={sending} className="rounded-md border border-line bg-white px-5 py-3 font-semibold text-ink transition-colors hover:border-navy">
-            Back
+          <button
+            type="button"
+            onClick={back}
+            disabled={sending}
+            className="border border-ink bg-white px-8 py-3.5 text-lg tracking-[1px] text-ink transition-colors hover:bg-ink hover:text-white"
+          >
+            Previous
           </button>
         )}
         <button
           type="submit"
           disabled={sending}
-          className="inline-flex min-w-40 items-center justify-center gap-2 rounded-md bg-navy px-6 py-3 font-semibold text-paper transition-colors hover:bg-navy-deep disabled:opacity-70"
+          className={`inline-flex items-center justify-center gap-2 transition-colors disabled:opacity-70 ${
+            look === "pill"
+              ? "rounded-full bg-[#dddddd] px-14 py-3 text-[17px] font-bold tracking-[0.5px] text-field-ink hover:bg-[#cfcfcf]"
+              : "bg-red px-10 py-3.5 text-lg tracking-[1px] text-white hover:bg-red-deep"
+          }`}
         >
-          {sending && <span aria-hidden className="size-4 animate-spin rounded-full border-2 border-paper/40 border-t-paper" />}
-          {sending ? "Sending…" : page < pages ? "Continue" : def.submitLabel}
+          {sending && <span aria-hidden className="size-4 animate-spin rounded-full border-2 border-current/40 border-t-current" />}
+          {sending ? "Sending…" : page < pages ? "Next" : def.submitLabel}
         </button>
       </div>
-      {def.captcha && page === pages && <div className="mt-4">{disclosure}</div>}
+      {def.captcha && page === pages && <div className={`mt-4 ${look === "pill" ? "text-center" : ""}`}>{disclosure}</div>}
     </form>
   );
 
@@ -335,7 +352,7 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, t
     const label = (
       <>
         {f.label}
-        {f.required && <span className="ml-1.5 text-xs font-normal uppercase tracking-wide text-muted">Required</span>}
+        {f.required && <span className="ml-1.5 text-sm font-normal text-red-deep">(Required)</span>}
       </>
     );
     const desc = f.description && <p id={`${id}-desc`} className="mt-1 text-sm text-muted">{f.description}</p>;
@@ -356,14 +373,14 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, t
           {desc}
           <div className="mt-3 flex flex-wrap gap-3" id={id} tabIndex={-1}>
             {opts.map((o) => (
-              <label key={o} className="flex cursor-pointer items-center gap-2.5 rounded-md border border-line bg-white px-4 py-2.5 has-checked:border-navy has-checked:bg-navy/5">
+              <label key={o} className="flex cursor-pointer items-center gap-2.5 rounded-full border border-[#bdbdbd] bg-white px-4 py-2 has-checked:border-teal-edge has-checked:bg-[rgb(60_162_162/0.12)]">
                 <input
                   type="radio"
                   name={`${id}-r`}
                   value={o}
                   checked={value(`input_${f.id}`) === o}
                   onChange={() => change(f, `input_${f.id}`, o)}
-                  className="size-4 accent-navy"
+                  className="size-4 accent-[#235b6e]"
                 />
                 <span>{o}</span>
               </label>

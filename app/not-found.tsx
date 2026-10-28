@@ -1,16 +1,15 @@
 import SiteChrome from "@/components/SiteChrome";
-import { Button, Container } from "@/components/ui";
+import { Container, Pill, Title } from "@/components/ui";
 
 export default function NotFound() {
   return (
     <SiteChrome>
-      <Container className="py-24 sm:py-32">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red">Page not found</p>
-        <h1 className="mt-3 font-serif text-4xl tracking-tight sm:text-5xl">We couldn’t find that page.</h1>
-        <p className="mt-4 max-w-xl text-lg text-muted">It may have moved when the site was rebuilt.</p>
+      <Container className="pb-24 pt-10 sm:pt-16">
+        <Title plain="Page not" accent="found" />
+        <p className="mt-6 max-w-xl text-base text-ink-2 sm:text-lg">We couldn’t find that page. It may have moved when the site was rebuilt.</p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Button href="/">Home</Button>
-          <Button href="/flags" variant="secondary">Flag Registry</Button>
+          <Pill href="/">Home</Pill>
+          <Pill href="/flags" variant="gray">Flag Registry</Pill>
         </div>
       </Container>
     </SiteChrome>

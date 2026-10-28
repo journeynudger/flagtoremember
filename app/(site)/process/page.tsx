@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Button, Container, Eyebrow, PageHeader } from "@/components/ui";
+import OpenOnHash from "@/components/OpenOnHash";
+import { Container, Pill, Prose, Title, Toggle } from "@/components/ui";
 import { processPage as page } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -9,107 +10,83 @@ export const metadata: Metadata = {
 };
 
 export default function ProcessPage() {
+  const p = page.pricing;
   return (
-    <>
-      <PageHeader eyebrow="Process" title={page.title}>
-        <ol className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {page.steps.map((s, i) => (
-            <li key={s.title}>
-              <a href={`#step-${i + 1}`} className="flex h-full items-center gap-3 rounded-md border border-line bg-white px-4 py-3 hover:border-navy">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-navy font-semibold text-paper">{i + 1}</span>
-                <span className="font-medium">{s.title}</span>
-              </a>
-            </li>
-          ))}
-        </ol>
-      </PageHeader>
+    <Container className="pb-24 pt-10 sm:pt-16">
+      <OpenOnHash />
+      <Title plain="Creating a Flag to" accent="Remember" />
 
-      <Container className="py-16 sm:py-24">
-        <div className="space-y-20 sm:space-y-28">
-          {page.steps.map((s, i) => (
-            <section key={s.title} id={`step-${i + 1}`} className="grid scroll-mt-28 gap-8 lg:grid-cols-[14rem_1fr] lg:gap-16">
-              <div>
-                <p className="font-serif text-7xl leading-none text-navy sm:text-8xl" aria-hidden>{String(i + 1).padStart(2, "0")}</p>
-                <Eyebrow>{s.label}</Eyebrow>
-              </div>
-              <div className="min-w-0">
-                <h2 className="font-serif text-4xl tracking-tight sm:text-5xl">{s.title}</h2>
-                <div className="mt-6 max-w-3xl space-y-5 text-lg leading-relaxed">
-                  {s.paragraphs.map((p) => (
-                    <p key={p}>{p}</p>
+      <div className="mt-8 space-y-3">
+        {page.steps.map((s, i) => (
+          <Toggle key={s.title} id={`step-${i + 1}`} title={`${s.label}: ${s.title}`}>
+            <Prose>
+              {s.paragraphs.map((t) => (
+                <p key={t}>{t}</p>
+              ))}
+            </Prose>
+            {s.list && (
+              <>
+                <p className="mt-5 font-semibold">{s.listTitle}</p>
+                <ul className="mt-3 grid gap-x-8 gap-y-1.5 text-base text-ink-2 sm:grid-cols-2 sm:text-lg">
+                  {s.list.map((l) => (
+                    <li key={l} className="flex gap-2.5">
+                      <span aria-hidden className="text-red-deep">•</span>
+                      {l}
+                    </li>
                   ))}
-                </div>
-                {s.list && (
-                  <div className="mt-8">
-                    <h3 className="font-semibold">{s.listTitle}</h3>
-                    <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                      {s.list.map((l) => (
-                        <li key={l} className="flex gap-3 rounded-md bg-white px-4 py-3 ring-1 ring-line">
-                          <span aria-hidden className="text-red">★</span>
-                          {l}
-                        </li>
-                      ))}
-                    </ul>
+                </ul>
+              </>
+            )}
+            {s.features && (
+              <dl className="mt-5 space-y-4 text-base sm:text-lg">
+                {s.features.map((f) => (
+                  <div key={f.title}>
+                    <dt className="inline font-semibold">{f.title}: </dt>
+                    <dd className="inline text-ink-2">{f.text}</dd>
                   </div>
-                )}
-                {s.features && (
-                  <dl className="mt-8 grid gap-4 md:grid-cols-3">
-                    {s.features.map((f) => (
-                      <div key={f.title} className="rounded-lg border border-line bg-white p-6">
-                        <dt className="font-serif text-2xl">{f.title}</dt>
-                        <dd className="mt-3 leading-relaxed text-muted">{f.text}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                )}
-              </div>
-            </section>
-          ))}
-        </div>
-      </Container>
+                ))}
+              </dl>
+            )}
+          </Toggle>
+        ))}
 
-      <section id="sizes" className="scroll-mt-24 border-t border-line bg-white py-20 sm:py-28" aria-labelledby="pricing">
-        <Container>
-          <div className="max-w-3xl">
-            <Eyebrow>Sizes</Eyebrow>
-            <h2 id="pricing" className="mt-3 font-serif text-4xl tracking-tight sm:text-5xl">{page.pricing.title}</h2>
-            <p className="mt-5 text-lg font-medium">{page.pricing.lede}</p>
-            <p className="mt-3 text-lg leading-relaxed text-muted">{page.pricing.text}</p>
-          </div>
-          <ul className="mt-12 grid gap-6 lg:grid-cols-3">
-            {page.pricing.sizes.map((s) => (
-              <li key={s.name} className="flex flex-col overflow-hidden rounded-lg border border-line bg-paper">
-                <div className="relative aspect-[4/3] bg-night">
-                  <Image src={s.image.src} alt={s.image.alt} fill sizes="(min-width: 1024px) 30vw, 100vw" className="object-cover" />
+        <Toggle id="sizes" title={p.title}>
+          <p className="text-lg font-semibold sm:text-xl">{p.lede}</p>
+          <p className="mt-2 text-base leading-relaxed text-ink-2 sm:text-lg">{p.text}</p>
+          <ul className="mt-8 grid gap-5 lg:grid-cols-3">
+            {p.sizes.map((s) => (
+              <li key={s.name} className="flex flex-col overflow-hidden rounded-[20px] bg-white">
+                <div className="relative aspect-[4/3]">
+                  <Image src={s.image.src} alt={s.image.alt} fill sizes="(min-width: 1024px) 300px, 100vw" className="object-cover" />
                 </div>
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <h3 className="font-serif text-3xl">{s.name}</h3>
-                  <dl className="mt-5 divide-y divide-line border-y border-line">
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <h3 className="text-2xl font-medium">{s.name}</h3>
+                  <dl className="mt-3 space-y-1 text-base">
                     {s.specs.map(([k, v]) => (
-                      <div key={k} className="flex justify-between gap-4 py-2.5">
+                      <div key={k} className="flex justify-between gap-4 border-b border-line pb-1">
                         <dt className="text-muted">{k}</dt>
-                        <dd className="font-semibold tabular-nums">{v}</dd>
+                        <dd className="font-medium tabular-nums">{v}</dd>
                       </div>
                     ))}
                   </dl>
-                  <p className="mt-5 flex-1 leading-relaxed text-muted">{s.text}</p>
-                  <p className="mt-6 flex items-baseline gap-3">
-                    <span className="font-serif text-4xl tabular-nums">{s.price}</span>
+                  <p className="mt-4 flex-1 text-base leading-relaxed text-ink-2">{s.text}</p>
+                  <p className="mt-5 flex items-baseline gap-2">
+                    <span className="text-3xl font-medium tabular-nums">{s.price}</span>
                     <span className="text-sm text-muted">{s.priceNote}</span>
                   </p>
                 </div>
               </li>
             ))}
           </ul>
-          <div className="mt-10 flex flex-col gap-5 rounded-lg border border-line bg-paper p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="mt-6 flex flex-col gap-4 rounded-[20px] bg-white p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <div>
-              <h3 className="font-serif text-2xl">{page.pricing.nonprofit.title}</h3>
-              <p className="mt-1 text-muted">{page.pricing.nonprofit.text}</p>
+              <h3 className="text-xl font-medium">{p.nonprofit.title}</h3>
+              <p className="mt-1 text-base text-ink-2">{p.nonprofit.text}</p>
             </div>
-            <Button href={page.pricing.nonprofit.href}>{page.pricing.nonprofit.label}</Button>
+            <Pill href={p.nonprofit.href}>{p.nonprofit.label}</Pill>
           </div>
-        </Container>
-      </section>
-    </>
+        </Toggle>
+      </div>
+    </Container>
   );
 }

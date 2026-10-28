@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Container, Eyebrow, PageHeader } from "@/components/ui";
 import Form from "@/components/forms/Form";
+import { Container, Toggle } from "@/components/ui";
 import { contact, site } from "@/lib/content";
 import { contactDef } from "@/lib/forms/schema";
 
@@ -11,59 +11,44 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <>
-      <PageHeader eyebrow={contact.eyebrow} title={contact.title} lede={contact.lede} />
-      <Container className="grid gap-12 py-16 sm:py-20 lg:grid-cols-[1fr_20rem] lg:gap-16">
-        <div className="min-w-0 rounded-lg border border-line bg-paper p-0 sm:bg-white sm:p-8 lg:p-10">
-          <Form def={contactDef} />
-        </div>
-        <aside className="space-y-8">
-          <div>
-            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Email</h2>
-            <a href={`mailto:${site.email}`} className="mt-2 block break-all text-lg underline decoration-line underline-offset-4 hover:decoration-navy">{site.email}</a>
-          </div>
-          <div>
-            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Phone</h2>
-            <a href={`tel:${site.phone.tel}`} className="mt-2 block text-lg underline decoration-line underline-offset-4 hover:decoration-navy">{site.phone.display}</a>
-          </div>
-          <div>
-            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Follow</h2>
-            <ul className="mt-2 space-y-1">
-              {site.social.map((s) => (
-                <li key={s.url}>
-                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-lg underline decoration-line underline-offset-4 hover:decoration-navy">
-                    {s.label}<span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </aside>
-      </Container>
+    <Container className="pb-24 pt-10 sm:pt-16">
+      <div className="mx-auto max-w-[640px] text-center">
+        <p className="accent text-xl sm:text-2xl">{contact.eyebrow}</p>
+        <h1 className="mt-1 text-6xl font-medium text-ink-2 sm:text-[4.375rem]">{contact.title}</h1>
+        <p className="mt-4 text-base leading-relaxed text-ink-2 sm:text-lg">{contact.lede}</p>
+      </div>
+      <div className="mx-auto mt-10 max-w-[640px]">
+        <Form def={contactDef} look="pill" />
+        <p className="mt-8 text-center text-base text-ink-2">
+          Or reach us directly:
+          <br />
+          <a href={`mailto:${site.email}`} className="font-medium text-ink underline underline-offset-2">{site.email}</a>
+          <br />
+          <a href={`tel:${site.phone.tel}`} className="font-medium text-ink underline underline-offset-2">{site.phone.display}</a>
+        </p>
+      </div>
 
-      <section id="faq" className="scroll-mt-24 border-t border-line bg-white py-16 sm:py-24" aria-labelledby="faq-title">
-        <Container className="grid gap-10 lg:grid-cols-[20rem_1fr] lg:gap-16">
-          <div>
-            <Eyebrow>{contact.faqLede}</Eyebrow>
-            <h2 id="faq-title" className="mt-3 font-serif text-4xl tracking-tight sm:text-5xl">{contact.faqTitle}</h2>
-          </div>
-          <div className="divide-y divide-line border-y border-line">
-            {contact.faq.map((item) => (
-              <details key={item.q} className="group py-1">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-lg font-medium [&::-webkit-details-marker]:hidden">
-                  {item.q}
-                  <span aria-hidden className="mt-1 text-2xl leading-none text-red transition-transform group-open:rotate-45">+</span>
-                </summary>
-                <div className="max-w-3xl space-y-3 pb-6 leading-relaxed text-muted">
-                  {item.a.map((p) => (
-                    <p key={p}>{p}</p>
-                  ))}
-                </div>
-              </details>
-            ))}
-          </div>
-        </Container>
+      <section id="faq" className="mx-auto mt-24 max-w-[760px] scroll-mt-24" aria-labelledby="faq-title">
+        <div className="text-center">
+          <p className="accent text-xl leading-tight sm:text-2xl">
+            You’ve Got Questions,
+            <br />
+            Here Are Some Answers
+          </p>
+          <h2 id="faq-title" className="mt-3 text-6xl font-medium text-ink-2 sm:text-[4.375rem]">{contact.faqTitle}</h2>
+        </div>
+        <div className="mt-8 space-y-1">
+          {contact.faq.map((item) => (
+            <Toggle key={item.q} title={item.q} size="md" level={3} variant="bare">
+              <div className="space-y-3 text-base leading-relaxed text-ink-2 sm:text-lg">
+                {item.a.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+              </div>
+            </Toggle>
+          ))}
+        </div>
       </section>
-    </>
+    </Container>
   );
 }

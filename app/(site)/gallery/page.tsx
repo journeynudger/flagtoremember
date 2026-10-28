@@ -1,75 +1,85 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Button, Container, Eyebrow, PageHeader } from "@/components/ui";
+import Carousel from "@/components/Carousel";
 import MediaCard from "@/components/MediaCard";
-import { gallery } from "@/lib/content";
+import { Container, Pill } from "@/components/ui";
+import { gallery, mediaRow } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Gallery",
   description: "Press, videos, events and photos from Flag to Remember.",
 };
 
+const row = "basis-[78%] sm:basis-[calc((100%-1.25rem)/2)] lg:basis-[calc((100%-3.75rem)/4)]";
+
 export default function GalleryPage() {
   const j = gallery.journey;
   return (
-    <>
-      <PageHeader eyebrow="Gallery" title="Press, videos and the road so far" lede={j.lede} />
-
-      <section className="py-16 sm:py-24" aria-labelledby="media">
-        <Container>
-          <h2 id="media" className="font-serif text-3xl tracking-tight sm:text-4xl">Press & Videos</h2>
-          <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 lg:grid-cols-4">
-            {gallery.media.map((m) => (
-              <li key={m.url}><MediaCard item={m} /></li>
+    <Container className="pb-24 pt-10 sm:pt-16">
+      <h1 className="sr-only">Gallery</h1>
+      <section aria-labelledby="press">
+        <h2 id="press" className="text-5xl font-semibold sm:text-6xl">Press</h2>
+        <div className="mt-6">
+          <Carousel label="Press" itemClass={row}>
+            {mediaRow(gallery.pressOrder).map((m) => (
+              <MediaCard key={m.url} item={m} />
             ))}
-          </ul>
-        </Container>
+          </Carousel>
+        </div>
       </section>
 
-      <section className="border-y border-line bg-white py-16 sm:py-24" aria-labelledby="journey">
-        <Container>
-          <div className="max-w-3xl">
-            <Eyebrow>Events</Eyebrow>
-            <h2 id="journey" className="mt-3 font-serif text-4xl tracking-tight sm:text-5xl">{j.title}</h2>
-            <p className="mt-5 text-lg leading-relaxed text-muted">{j.text}</p>
-          </div>
-          <ul className="mt-14 space-y-14">
-            {j.events.map((e, i) => (
-              <li key={e.title} className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
-                <div className={`relative aspect-[3/2] overflow-hidden rounded-lg bg-night ${i % 2 ? "md:order-2" : ""}`}>
-                  <Image src={e.image.src} alt={e.image.alt} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
+      <section className="mt-20" aria-labelledby="videos">
+        <h2 id="videos" className="text-5xl font-semibold sm:text-6xl">Videos</h2>
+        <div className="mt-6">
+          <Carousel label="Videos" itemClass={row}>
+            {mediaRow(gallery.videoOrder).map((m) => (
+              <MediaCard key={m.url} item={m} />
+            ))}
+          </Carousel>
+        </div>
+      </section>
+
+      <section className="mt-24 border-t-2 border-ink/80 pt-6" aria-labelledby="journey">
+        <div className="grid gap-4 md:grid-cols-2 md:gap-12">
+          <h2 id="journey" className="text-4xl font-medium sm:text-5xl">
+            Our <span className="accent">Journey</span>
+          </h2>
+          <p className="text-base leading-relaxed text-ink-2 sm:text-lg">{j.text}</p>
+        </div>
+        <ul className="mt-12 space-y-14">
+          {j.events.map((e, i) => (
+            <li key={e.title} className="grid items-center gap-6 md:grid-cols-2 md:gap-12">
+              <div className={`relative aspect-[3/2] overflow-hidden rounded-[20px] bg-soft ${i % 2 ? "md:order-2" : ""}`}>
+                <Image src={e.image.src} alt={e.image.alt} fill sizes="(min-width: 768px) 500px, 100vw" className="object-cover" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-medium sm:text-3xl">{e.title}</h3>
+                <p className="accent mt-1 text-lg text-muted">{e.date}</p>
+                <p className="mt-4 text-base leading-relaxed text-ink-2 sm:text-lg">{e.text}</p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {e.links.map((l, k) => (
+                    <Pill key={l.url} href={l.url} newTab variant={k === 0 ? "outline" : "gray"}>{l.label}</Pill>
+                  ))}
                 </div>
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-wider text-red">{e.date}</p>
-                  <h3 className="mt-2 font-serif text-3xl">{e.title}</h3>
-                  <p className="mt-4 text-lg leading-relaxed text-muted">{e.text}</p>
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    {e.links.map((l, k) => (
-                      <Button key={l.url} href={l.url} variant={k === 0 ? "primary" : "secondary"}>{l.label}</Button>
-                    ))}
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </Container>
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
 
-      <section className="py-16 sm:py-24" aria-labelledby="photos">
-        <Container>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <h2 id="photos" className="font-serif text-3xl tracking-tight sm:text-4xl">Photos</h2>
-            <Button href={j.hostForm.url} variant="secondary">{j.hostForm.label}</Button>
-          </div>
-          <ul className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3">
-            {gallery.photos.map((p) => (
-              <li key={p.src} className="mb-4 break-inside-avoid">
-                <Image src={p.src} alt={p.alt} width={p.width} height={p.height} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" className="h-auto w-full rounded-lg" />
-              </li>
-            ))}
-          </ul>
-        </Container>
+      <section className="mt-24" aria-labelledby="photos">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <h2 id="photos" className="text-4xl font-medium sm:text-5xl">Photos</h2>
+          <Pill href={j.hostForm.url} newTab>{j.hostForm.label}</Pill>
+        </div>
+        <ul className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3">
+          {gallery.photos.map((p) => (
+            <li key={p.src} className="mb-4 break-inside-avoid">
+              <Image src={p.src} alt={p.alt} width={p.width} height={p.height} sizes="(min-width: 1024px) 340px, (min-width: 640px) 45vw, 100vw" className="h-auto w-full rounded-[20px]" />
+            </li>
+          ))}
+        </ul>
       </section>
-    </>
+    </Container>
   );
 }
