@@ -48,6 +48,9 @@ work exactly as before. Nothing about payments is built here.
   This site takes no payments, so that question is not shown, `input_79` is always sent as "No" (see `_fixed`),
   and the thank-you message links to the Donate page instead.
 - **Donate** links to the existing Stripe checkout: Gravity Forms form 10 at `${WORDPRESS_ORIGIN}/donate/`.
+- The existing `/?callback=gravityformsstripe` endpoint is proxied to WordPress before the homepage is
+  rendered. This preserves Stripe's configured webhook URL, raw request body and signature header during
+  the DNS cutover. WordPress still validates signatures; there is no payment processing in Next.js.
 
 `WORDPRESS_ORIGIN` defaults to `https://flagtoremember.com`. **Before the domain points at this site,
 WordPress needs its own hostname** (for example `wp.flagtoremember.com`) set in `WORDPRESS_ORIGIN`. Otherwise

@@ -18,6 +18,20 @@ const nextConfig: NextConfig = {
   images: { qualities: [75] },
   // Trailing slashes are removed by the last rule below instead, after the moved pages.
   skipTrailingSlashRedirect: true,
+  async rewrites() {
+    const origin = (process.env.WORDPRESS_ORIGIN || "https://wp.flagtoremember.com").replace(/\/$/, "");
+    return {
+      // Keep Stripe's existing webhook URL working after the public domain moves.
+      // WordPress still verifies the original signature and processes the payment event.
+      beforeFiles: [{
+        source: "/",
+        has: [{ type: "query", key: "callback", value: "gravityformsstripe" }],
+        destination: `${origin}/?callback=gravityformsstripe`,
+      }],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
   async headers() {
     return [
       {
