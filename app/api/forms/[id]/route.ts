@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { wordpressOrigin } from "@/lib/content";
 import { firstErrorPage, getForm, payload, validate, type Errors, type Values } from "@/lib/forms/schema";
+import { standaloneSubmit } from "@/lib/submissions/standalone";
+
+export const maxDuration = 60;
 
 /**
  * POST /api/forms/<id> — every form on the site submits here.
@@ -15,7 +18,7 @@ import { firstErrorPage, getForm, payload, validate, type Errors, type Values } 
  *   dry       check locally only; nothing leaves this server
  */
 
-export interface SubmitBody { values?: Values; captcha?: string; hp?: string; startedAt?: number }
+export interface SubmitBody { values?: Values; captcha?: string; hp?: string; startedAt?: number; requestId?: string }
 export type SubmitReply =
   | { ok: true; message: string; mode?: "validate" | "dry"; captchaChecked?: boolean }
   | { ok: false; errors?: Errors; page?: number; message?: string };
@@ -41,6 +44,10 @@ export async function POST(request: Request, ctx: RouteContext<"/api/forms/[id]"
   const { id } = await ctx.params;
   const form = getForm(Number(id));
   if (!form) return reply({ ok: false, message: "Unknown form." }, 404);
+  const originHeader = request.headers.get("origin");
+  if (originHeader && originHeader !== new URL(request.url).origin) {
+    return reply({ ok: false, message: FAIL }, 403);
+  }
 
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
   if (limited(ip)) return reply({ ok: false, message: "Too many tries in a minute. Please wait a moment and try again." }, 429);
@@ -50,6 +57,7 @@ export async function POST(request: Request, ctx: RouteContext<"/api/forms/[id]"
   let body: SubmitBody;
   try {
     body = JSON.parse(raw) as SubmitBody;
+    if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error("Invalid body");
   } catch {
     return reply({ ok: false, message: FAIL }, 400);
   }
@@ -72,6 +80,17 @@ export async function POST(request: Request, ctx: RouteContext<"/api/forms/[id]"
 
   const mode = process.env.FORMS_MODE === "validate" || process.env.FORMS_MODE === "dry" ? process.env.FORMS_MODE : undefined;
   if (mode === "dry") return reply({ ok: true, message: form.confirmation, mode });
+
+  if (process.env.FTR_STANDALONE === "true") {
+    try {
+      const result = await standaloneSubmit(form.id, values, body.requestId, body.captcha, mode === "validate");
+      if (!result.ok) return reply({ ok: false, message: result.message }, result.status);
+      return reply({ ok: true, message: form.confirmation, mode, captchaChecked: true });
+    } catch {
+      console.error(`[forms] ${form.id}: standalone submission failed`);
+      return reply({ ok: false, message: FAIL }, 503);
+    }
+  }
 
   const gfBody: Record<string, string> = {};
   for (const [name, value] of Object.entries(payload(form, values))) gfBody[name.replace(/\./g, "_")] = value;

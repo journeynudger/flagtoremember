@@ -48,6 +48,7 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, l
   const [summary, setSummary] = useState(false);
   const [hp, setHp] = useState("");
   const startedAt = useRef(0);
+  const requestId = useRef("");
   const captcha = useRef<Promise<Captcha> | null>(null);
   const captchaBox = useRef<HTMLDivElement>(null);
   const summaryRef = useRef<HTMLDivElement>(null);
@@ -133,13 +134,14 @@ export default function Form({ def, pageContent, afterSuccess, inline = false, l
     setStatus("sending");
     setMessage(null);
     setSummary(false);
-    let token: string | undefined;
-    if (def.captcha && captcha.current) token = await (await captcha.current).token();
     try {
+      if (!requestId.current) requestId.current = crypto.randomUUID();
+      let token: string | undefined;
+      if (def.captcha && captcha.current) token = await (await captcha.current).token();
       const res = await fetch(`/api/forms/${def.id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ values, captcha: token, hp, startedAt: startedAt.current }),
+        body: JSON.stringify({ values, captcha: token, hp, startedAt: startedAt.current, requestId: requestId.current }),
       });
       const data = await res.json();
       if (data.ok) {

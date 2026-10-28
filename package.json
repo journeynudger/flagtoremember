@@ -8,21 +8,31 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
-    "test:forms": "node scripts/test-forms.mjs"
+    "test:forms": "node scripts/test-forms.mjs",
+    "test:standalone": "node --import tsx --test scripts/test-standalone.ts"
   },
   "dependencies": {
     "next": "16.4.3",
+    "nodemailer": "10.2.1",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "stripe": "23.0.1",
+    "workflow": "5.2.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/nodemailer": "8.0.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
     "tailwindcss": "^4",
+    "tsx": "4.23.15",
     "typescript": "^5"
+  },
+  "overrides": {
+    "zod": "4.6.7",
+    "undici": "7.30.1"
   }
 }
