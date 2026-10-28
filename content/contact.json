@@ -1,5 +1,5 @@
 {
-  "_source": "Contact page (/contact/, modified 2026-09-16): form 8 and the FAQ.",
+  "_source": "Contact page (/contact/, modified 2026-09-16): form 8 and the FAQ. The FAQ said 'Every $4 helps cover … one name'; aligned to the $15 stated on the Donate and Add a Name pages (2026-10-27, Lorenzo: fix obvious conflicts).",
   "eyebrow": "Let’s Talk",
   "title": "Contact",
   "lede": "Questions about a registered name, sponsoring a flag or partnering with us: send a note and we’ll get back to you.",
@@ -9,7 +9,7 @@
     { "q": "Who qualifies as a name to be sewn onto a flag?", "a": ["Any military member or first responder who has passed, whether in the line of duty or otherwise. Our focus is always on their SERVICE and SACRIFICE."] },
     { "q": "Can I have a personal flag made?", "a": ["Right now, our focus is on public display flags, but we’ve received many requests for personal ones. We plan to introduce Family Flags—individual, smaller flags for donors—starting in late 2026."] },
     { "q": "How can I best follow my flag’s journey?", "a": ["Flag Host Profile: Donors will receive a flyer with registered names and a Flag Host Profile, including the flag’s location and contact details for questions, visits, and event updates.", "Social Media: Follow your flag’s journey with tags like #Flag001, #Flag002, and more."] },
-    { "q": "What is the cost to add one name to a flag?", "a": ["Registering a name is completely free. As a 501(c)(3) nonprofit, we rely on donations to continue our mission. Every $4 helps cover the labor and materials needed to sew one name onto a flag."] },
+    { "q": "What is the cost to add one name to a flag?", "a": ["Registering a name is completely free. As a 501(c)(3) nonprofit, we rely on donations to continue our mission. For perspective, $15 helps one name get added to a flag."] },
     { "q": "Where do my donations go?", "a": ["100% of donations fund materials, labor, and shipping for flags we help organizations build. When Flag Hosts cover hosting costs, that funding goes directly toward the flag and ensures registered names can be added at no cost to families."] },
     { "q": "Who qualifies to be a Flag Host?", "a": ["Any trusted business or organization committed to honoring veterans and first responders by proudly displaying a flag in their building and at events. As a Flag Host, you help A Flag to Remember spark conversation, raise awareness, and ensure the service and sacrifice behind each name are never forgotten."] },
     { "q": "What is a name donor?", "a": ["A Name Donor is a family member or friend who wishes to honor a fallen Military Member or First Responder by adding their loved one’s name to future flags."] }

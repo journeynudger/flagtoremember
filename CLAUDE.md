@@ -72,20 +72,18 @@ and every old `…/` URL reaches its page in one hop (`next.config.ts`).
 2. **Flag counts conflict.** The old home counters say 50 flags, 1,200+ names, 4 states; the old Our Journey page
    says 20 active flags, 4 states, 5 cities; the published list has flags 001–018 (19 entries with 009A/009B) in
    7 host states. The new home page shows counts from the list. Which numbers are right?
-3. **Name cost conflicts.** Donate page and Add a Name say $15 sews one name ($30 most common); the FAQ says
-   "Every $4 helps cover … one name". Which is current?
-4. **Phone (206) 707-2247** appears only on the flyers. OK to publish it as the main number?
-5. **Flags 013–018:** flyers, host websites and photos to add? 017 and 018 still say "Pending".
-6. **Flag 002 memorial:** the photo file is named "SSG-Richard-Langley"; the text says SSG Wade Langley Jr. Confirm
-   the name.
-7. **Flyer details:** Flag 009B's address is unreadable on its flyer (left out). Flag 002's flyer says
-   offroadoutreach.org; the old page links offroadoutreach.com (kept). Flag 007's flyer spells "Starpoimte Dr"
-   (written as Starpointe Dr).
-8. **Founder's name:** About says Anthony Peterson; Our Team said "Petersonn". Using Peterson.
-9. **"For more than 5 years"** on About: still the wording you want?
-10. **Name Registry on phones:** the Airtable embed can't search on phones (as the old page said). A full-screen
-    link is added; confirm the shared view `shrtQ3zbDp9T6RDfy` is meant to be public.
-11. **Stay Updated** signup has no confirmation text on WordPress; the site says "Thank you for signing up." Fine?
+3. **Phone (206) 707-2247** appears only on the flyers. OK to publish it as the main number?
+4. **Flags 013–018:** flyers, host websites and photos to add? 017 and 018 still say "Pending".
+5. **Flag 009B's address** is unreadable on its flyer, so it is left out.
+6. **"For more than 5 years"** on About: still the wording you want?
+7. **Name Registry on phones:** the Airtable embed can't search on phones (as the old page said). A full-screen
+   link is added; confirm the shared view `shrtQ3zbDp9T6RDfy` is meant to be public.
+8. **Stay Updated** signup has no confirmation text on WordPress; the site says "Thank you for signing up." Fine?
+
+Resolved on 2026-10-27 (Lorenzo: "fix any obvious conflicts"): the FAQ's "$4 per name" now matches the $15 on the
+Donate and Add a Name pages; Off-Road Outreach links to offroadoutreach.org (the .com redirects there, as the flyer
+says); Flag 002 honors SSG Wade Langley Jr. as both texts say (only the photo's file name said Richard); the founder
+is Anthony Peterson (Our Team's "Petersonn" was a typo); Flag 007's address is Starpointe Dr.
 
 ## Checks
 
