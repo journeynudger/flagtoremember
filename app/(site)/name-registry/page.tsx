@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function NameRegistryPage() {
   return (
-    <Container className="pb-24 pt-10 sm:pt-16">
+    <Container className="pb-24 pt-14 sm:pt-20">
       <Title plain="Name" accent="Registry" rule={false} />
       <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-ink-2 sm:text-lg">
         <p>When viewing on your desktop you can filter by:</p>

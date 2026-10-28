@@ -11,7 +11,7 @@ export default function DonatePage() {
   const checkout = `${wordpressOrigin()}${donate.checkoutPath}`;
   return (
     <Container className="max-w-[920px] pb-24 pt-10 text-center sm:pt-16">
-      <h1 className="text-4xl font-medium leading-tight sm:text-[2.75rem]">{donate.title}</h1>
+      <h1 className="text-[2.625rem] font-medium leading-tight sm:text-[3.125rem]">{donate.title}</h1>
       <p className="mx-auto mt-6 max-w-3xl text-base font-medium leading-relaxed text-ink-2 sm:text-lg">{donate.text}</p>
 
       <div className="mx-auto mt-12 grid max-w-xl gap-4 sm:grid-cols-2">

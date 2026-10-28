@@ -4,7 +4,7 @@ import { Container, Pill, Title } from "@/components/ui";
 export default function NotFound() {
   return (
     <SiteChrome>
-      <Container className="pb-24 pt-10 sm:pt-16">
+      <Container className="pb-24 pt-14 sm:pt-20">
         <Title plain="Page not" accent="found" />
         <p className="mt-6 max-w-xl text-base text-ink-2 sm:text-lg">We couldn’t find that page. It may have moved when the site was rebuilt.</p>
         <div className="mt-8 flex flex-wrap gap-3">

@@ -32,7 +32,7 @@ function Hosts({ flag }: { flag: Flag }) {
 
 export default function FlagsPage() {
   return (
-    <Container className="pb-24 pt-10 sm:pt-16">
+    <Container className="pb-24 pt-14 sm:pt-20">
       <OpenOnHash />
       <Title plain="Flag" accent="Registry" />
       <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-2 sm:text-lg">
@@ -49,7 +49,7 @@ export default function FlagsPage() {
           if (f.hostPhone)
             rows.push(["Host phone", <a key="p" href={`tel:+1${f.hostPhone.replace(/\D/g, "")}`} className="text-teal-edge underline underline-offset-2">{f.hostPhone}</a>]);
           return (
-            <Toggle key={f.number} id={flagAnchor(f.number)} title={`Flag ${f.number}`} size="md" variant="bare">
+            <Toggle key={f.number} id={flagAnchor(f.number)} title={`Flag ${f.number}`} variant="bare">
               <div className={`grid gap-6 ${f.image ? "md:grid-cols-[17rem_1fr] md:gap-8" : ""}`}>
                 {f.image && (
                   <a href={f.image.src} className="block max-w-[17rem]" aria-label={`Open the Flag ${f.number} flyer full size`}>

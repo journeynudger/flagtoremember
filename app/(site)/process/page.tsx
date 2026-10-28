@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ProcessPage() {
   const p = page.pricing;
   return (
-    <Container className="pb-24 pt-10 sm:pt-16">
+    <Container className="pb-24 pt-14 sm:pt-20">
       <OpenOnHash />
       <Title plain="Creating a Flag to" accent="Remember" />
 

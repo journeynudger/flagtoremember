@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section className="on-dark relative isolate flex min-h-[min(80svh,44rem)] items-center justify-center overflow-hidden bg-hero text-center text-white">
+      <section className="on-dark relative isolate flex min-h-[min(92svh,54rem)] items-center justify-center overflow-hidden bg-hero text-center text-white">
         <Image src={home.band.src} alt="" fill priority sizes="100vw" className="-z-10 object-cover" />
         <div aria-hidden className="absolute inset-0 -z-10 bg-black/45" />
         <div className="px-5 pb-10 pt-28">

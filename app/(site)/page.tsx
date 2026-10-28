@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "@/components/Carousel";
+import CountUp from "@/components/CountUp";
 import FlagMap from "@/components/FlagMap";
 import MediaCard from "@/components/MediaCard";
+import ParallaxBand from "@/components/ParallaxBand";
 import { Container, Pill } from "@/components/ui";
 import { flags, flagsByState, gallery, home } from "@/lib/content";
 
@@ -18,12 +20,12 @@ export default function HomePage() {
   return (
     <>
       {/* Hero: the flags on the pole, as on the original home page. */}
-      <section className="on-dark relative isolate flex min-h-[min(88svh,52rem)] items-center justify-center overflow-hidden bg-hero text-center text-white">
+      <section className="on-dark relative isolate flex min-h-[min(92svh,54rem)] items-center justify-center overflow-hidden bg-hero text-center text-white">
         <Image src={home.hero.image.src} alt={home.hero.image.alt} fill priority sizes="100vw" className="-z-10 object-cover object-[30%_center]" />
         <div aria-hidden className="absolute inset-0 -z-10 bg-black/35" />
-        <div className="px-5 pb-10 pt-28">
-          <p className="accent text-xl sm:text-[1.5625rem]">{home.hero.eyebrow}</p>
-          <h1 className="mt-1 text-[3.25rem] font-medium leading-[1] sm:text-7xl lg:text-[5.5rem]">{home.hero.title}</h1>
+        <div className="px-5 pb-16 pt-24">
+          <p className="accent text-xl font-medium sm:text-[1.5625rem]">{home.hero.eyebrow}</p>
+          <h1 className="mt-1 text-[3.125rem] font-medium leading-[1] sm:text-[4.375rem]">{home.hero.title}</h1>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-14">
             <Pill href="/add-name" variant="white" size="lg">Add a Name</Pill>
             <Pill href="/donate" variant="glass" size="lg">
@@ -36,7 +38,7 @@ export default function HomePage() {
       {/* Our Mission */}
       <section className="py-20 text-center sm:py-24">
         <Container className="max-w-[1000px]">
-          <h2 className="accent text-4xl sm:text-[2.75rem]">{home.missionTitle}</h2>
+          <h2 className="accent text-[2.5rem] font-medium leading-none">{home.missionTitle}</h2>
           <p className="mx-auto mt-8 max-w-[52rem] text-[1.375rem] font-medium leading-snug sm:text-[1.75rem]">
             {lead} <span className="text-[#6b6b6b]">{middle}</span> {end}
           </p>
@@ -47,11 +49,8 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* The full-width band of Flag 005, fading to gray as on the original. */}
-      <div className="relative h-[clamp(16rem,39vw,31rem)] overflow-hidden bg-[#a7a9ad]">
-        <Image src={home.band.src} alt={home.band.alt} fill sizes="100vw" className="object-cover object-[center_88%]" />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-b from-[#a7a9ad]/0 via-[#a7a9ad]/85 to-[#a7a9ad]" />
-      </div>
+      {/* The full-width band of Flag 005, with the original's parallax on desktop. */}
+      <ParallaxBand src={home.band.src} alt={home.band.alt} />
 
       {/* Current Flags */}
       <section className="pb-20 pt-24 sm:pb-28 sm:pt-32" aria-labelledby="current-flags">
@@ -73,7 +72,7 @@ export default function HomePage() {
             {counters.map((c) => (
               <div key={c.label} className="flex flex-col-reverse">
                 <dt className="mt-3 text-lg text-ink-2">{c.label}</dt>
-                <dd className={`text-6xl tabular-nums sm:text-[3.25rem] md:text-6xl lg:text-7xl ${c.color}`}>{c.value}</dd>
+                <CountUp value={c.value} className={`text-6xl tabular-nums sm:text-[3.25rem] md:text-6xl lg:text-7xl ${c.color}`} />
               </div>
             ))}
           </dl>

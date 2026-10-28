@@ -15,7 +15,7 @@ const row = "basis-[78%] sm:basis-[calc((100%-1.25rem)/2)] lg:basis-[calc((100%-
 export default function GalleryPage() {
   const j = gallery.journey;
   return (
-    <Container className="pb-24 pt-10 sm:pt-16">
+    <Container className="pb-24 pt-14 sm:pt-20">
       <h1 className="sr-only">Gallery</h1>
       <section aria-labelledby="press">
         <h2 id="press" className="text-5xl font-semibold sm:text-6xl">Press</h2>

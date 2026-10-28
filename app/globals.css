@@ -92,11 +92,8 @@ p {
 .toggle > summary::-webkit-details-marker {
   display: none;
 }
-.toggle .toggle__sign::before {
-  content: "+";
-}
-.toggle[open] .toggle__sign::before {
-  content: "\2212";
+.toggle[open] .toggle__v {
+  display: none;
 }
 
 .scroll-row {

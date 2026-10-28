@@ -13,12 +13,15 @@ Keys that start with `_` (`_source`, `_note`, `_fixed`) are records only. Nothin
 
 Matches the live WordPress site as measured on 2026-10-27 (stills and computed styles): white pages, Inter
 headings with an italic Playfair Display accent word over a thin rule ("Flag *Registry*"), pill buttons, round logo
-and a menu button at every width opening a white panel from the right, "+" toggles (Process steps, Flag Registry,
+and a menu button at every width opening a white panel from the right, the header fixed on every page as a
+translucent white bar with a 10px blur, the home page's Flag 005 band with the original's desktop parallax
+(`components/ParallaxBand.tsx`; phones and reduced motion get a still photo), counters that count up once, "+" toggles (Process steps, Flag Registry,
 FAQ, Our Founder / Our Vision), gray pill fields on Contact and the footer signup, Gravity Forms' red progress bar
 and square red Next on Add a Name, the home map (its SVG, `content/us-map.json`) with teal state chips, the orange /
 navy / red counters, and the light four-column footer. Colors live in `app/globals.css`.
 
-Changed on purpose: body text 16–18px instead of 14px, darker grays and reds where the original failed contrast,
+Changed on purpose: the fixed header turns 80% white once the page scrolls under it (the original stays 25%, hard to
+see over text), body text 16–18px instead of 14px, darker grays and reds where the original failed contrast,
 real headings inside toggles, sliders that never move on their own (arrows, dots, swipe), the Press and Videos rows
 plus the old Our Journey page's events and photos on Gallery.
 

@@ -21,7 +21,7 @@ export function Title({
   className?: string;
 }) {
   return (
-    <Tag className={`text-[2.5rem] font-medium leading-[1.05] tracking-[-0.01em] sm:text-6xl lg:text-[4.375rem] ${rule ? "border-b-2 border-ink/80 pb-4 sm:pb-5" : ""} ${className}`}>
+    <Tag className={`text-[3.125rem] font-medium leading-[1.05] tracking-[-0.01em] sm:text-6xl lg:text-[4.375rem] ${rule ? "border-b-2 border-ink/80 pb-4 sm:pb-5" : ""} ${className}`}>
       {plain}
       {accent && (
         <>
@@ -83,10 +83,20 @@ export function Toggle({
     <details id={id} open={open} className={`toggle scroll-mt-28 ${variant === "card" ? "rounded-[25px] bg-soft" : ""}`}>
       <summary
         className={`flex items-start gap-3 font-medium ${variant === "card" ? "px-5 sm:gap-4 sm:px-7" : "px-2"} ${
-          size === "lg" ? "py-5 text-xl sm:py-6 sm:text-[2rem]" : variant === "bare" ? "py-2 text-xl sm:text-[1.625rem]" : "py-4 text-lg sm:text-xl"
+          variant === "bare"
+            ? size === "lg"
+              ? "py-1 text-[1.75rem] sm:py-2 sm:text-[2.1875rem]"
+              : "py-2 text-xl sm:text-[1.625rem]"
+            : size === "lg"
+              ? "py-5 text-[1.5625rem] sm:py-6 sm:text-[2.1875rem]"
+              : "py-4 text-xl sm:py-5 sm:text-[1.5625rem]"
         }`}
       >
-        <span aria-hidden className="toggle__sign w-5 shrink-0 text-center leading-[1.15]" />
+        {/* The original's thin plus (a minus when open), drawn a little larger than the text. */}
+        <svg aria-hidden viewBox="0 0 24 24" className="mt-[0.1em] size-[0.95em] shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <path d="M3 12h18" />
+          <path className="toggle__v" d="M12 3v18" />
+        </svg>
         <H className="min-w-0 font-medium leading-tight">{title}</H>
       </summary>
       <div className={variant === "card" ? "px-5 pb-6 sm:px-7 sm:pb-8 sm:pl-16" : "pb-6 pl-10 pr-2 pt-2"}>{children}</div>

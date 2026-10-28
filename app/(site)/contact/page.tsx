@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <Container className="pb-24 pt-10 sm:pt-16">
+    <Container className="pb-24 pt-14 sm:pt-20">
       <div className="mx-auto max-w-[640px] text-center">
         <p className="accent text-xl sm:text-2xl">{contact.eyebrow}</p>
         <h1 className="mt-1 text-6xl font-medium text-ink-2 sm:text-[4.375rem]">{contact.title}</h1>

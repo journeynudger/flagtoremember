@@ -28,8 +28,8 @@ export default function AddNamePage() {
   };
 
   return (
-    <Container className="max-w-[920px] pb-24 pt-10 sm:pt-16">
-      <h1 className="text-center text-4xl font-medium leading-tight sm:text-[2.625rem]">{addName.process.title}</h1>
+    <Container className="max-w-[920px] pb-24 pt-14 sm:pt-20">
+      <h1 className="text-center text-[2.625rem] font-medium leading-tight">{addName.process.title}</h1>
       <ol className="mx-auto mt-6 max-w-3xl space-y-3 text-center text-base font-semibold leading-relaxed sm:text-lg">
         {addName.process.steps.map((s, i) => (
           <li key={s}>
