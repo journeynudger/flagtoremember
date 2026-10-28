@@ -1,0 +1,34 @@
+{
+  "_source": "Home page (flagtoremember.com/, modified 2026-09-28).",
+  "hero": {
+    "eyebrow": "Honoring Our Fallen Soldiers",
+    "title": "Flag to Remember",
+    "image": { "src": "/images/hero-flag-005.jpg", "width": 1920, "height": 1080, "alt": "Flag 005 up close: rows of uniform name tapes sewn into the stripes beneath a blue union of service insignia." }
+  },
+  "missionTitle": "Our Mission",
+  "flagsIntro": {
+    "title": "Current Flags",
+    "text": "Find flags across the country, listed by host state, each honoring our nation’s heroes."
+  },
+  "registryCta": {
+    "title": "Looking for a specific name?",
+    "text": "Go to the Name Registry and see which Flag your name is being honored on.",
+    "label": "Name Registry",
+    "href": "/name-registry"
+  },
+  "namesAdded": "1,200+",
+  "sponsorsTitle": "A Special Thanks to Our Sponsors",
+  "sponsors": [
+    { "name": "Kraken Skulls", "src": "/images/sponsors/kraken-skulls.png", "width": 154, "height": 246 },
+    { "name": "National Warrior Foundation", "src": "/images/sponsors/national-warrior-foundation.png", "width": 1500, "height": 844 },
+    { "name": "Nous Defions Group", "src": "/images/sponsors/nous-defions.png", "width": 300, "height": 300 },
+    { "name": "Forging Forward", "src": "/images/sponsors/forging-forward.png", "width": 251, "height": 300 },
+    { "name": "Axios Investigations", "src": "/images/sponsors/axios-investigations.png", "width": 218, "height": 231 },
+    { "name": "Special Forces Foundation", "src": "/images/sponsors/special-forces-foundation.png", "width": 300, "height": 300 },
+    { "name": "All Veteran Group", "src": "/images/sponsors/all-veteran-group.jpg", "width": 225, "height": 225 },
+    { "name": "Camp 4 Heroes", "src": "/images/sponsors/camp-4-heroes.png", "width": 226, "height": 226 },
+    { "name": "True Patriot", "src": "/images/sponsors/true-patriot.png", "width": 222, "height": 222 },
+    { "name": "Veteran Trash Talk", "src": "/images/sponsors/veteran-trash-talk-hour.jpg", "width": 280, "height": 280 },
+    { "name": "Let's Walk It Out", "src": "/images/sponsors/lets-walk-it-out.jpg", "width": 576, "height": 188 }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "_source": "Process page (/process/, modified 2026-10-04). Prices exactly as published.",
+  "title": "Creating a Flag to Remember",
+  "steps": [
+    {
+      "label": "Step 1",
+      "title": "Name Donors",
+      "paragraphs": [
+        "Name Donors submit the name of a fallen Service Member or First Responder to be sewn onto our flags at no cost. Regardless of the cause of death, in or after their service, they are honored on a flag.",
+        "Donors choose the uniform pattern that best represents their loved one’s service.",
+        "All registered names are added to our database and placed indefinitely in a queue for inclusion on future flags."
+      ]
+    },
+    {
+      "label": "Step 2",
+      "title": "Flag Hosts",
+      "paragraphs": [
+        "Flag Hosts are businesses and organizations dedicated to publicly displaying our flags in the spotlight of our communities, as lasting tributes to our heroes. These flags provide comfort to grieving families and unite communities; strengthening a grateful nation to the sacrifices made.",
+        "Becoming a Flag Host means gaining nationwide visibility while redefining remembrance.",
+        "Each flag goes through four meticulous stages: Printing, sewing, framing (if needed), and final dedication. A one-time donation covers the labor and materials, keeping our flags flying high across the country."
+      ],
+      "listTitle": "Flag Host locations include but not limited to:",
+      "list": [
+        "Airports",
+        "Stadiums/Arena",
+        "VFW/American Legion posts",
+        "Breweries/Distilleries",
+        "Veteran/First Responder-owned businesses",
+        "Hospitals/Assisted living homes",
+        "Nonprofit Organizations",
+        "City Hall Buildings"
+      ]
+    },
+    {
+      "label": "Step 3",
+      "title": "Building the Flag",
+      "paragraphs": [
+        "Our flags have unique features that make them profoundly symbolic and impactful."
+      ],
+      "features": [
+        {
+          "title": "The Union",
+          "text": "The blue portion of the flag represents the “Union” and is printed with Military and First Responder insignia. Encircling them are 21 stars, symbolizing the traditional 21-gun salute. Our Foundation’s logo is printed on the back of the flag."
+        },
+        {
+          "title": "Name Tape",
+          "text": "Each fallen hero’s name is sewn onto the flag using an actual uniform name tape from their service. Name Donors can personalize it with nicknames, dates, or a standard rank and name."
+        },
+        {
+          "title": "Serial Number",
+          "text": "Every flag has a unique serial number, allowing Name Donors to track the flag’s journey. Visitors can post and tag the flag’s picture and number on social media, promoting awareness and remembrance."
+        }
+      ]
+    },
+    {
+      "label": "Step 4",
+      "title": "Flag Dedication",
+      "paragraphs": [
+        "Flag Hosts often invite the community to unveil the flag and discuss the importance of its display. Families of the flag receive a newsletter email inviting them to see their newest flag be revealed. Once dedicated, we notify all families with details about the Flag Host, to include pictures.",
+        "When available, Anthony Peterson, the founder will travel to attend a dedication and speak to the families, if requested."
+      ]
+    }
+  ],
+  "pricing": {
+    "title": "Donation Costs & Flag Sizes",
+    "lede": "10% of every flag goes toward donating a framed flag to an organization in need.",
+    "text": "Every Flag to Remember is built by hand with the same care as our very first flag. Your donation covers materials, labor, and shipping, plus framing for the Framed Flag.",
+    "sizes": [
+      {
+        "name": "Framed Flag",
+        "specs": [
+          [
+            "Flag size",
+            "2 x 3 ft"
+          ],
+          [
+            "Frame size",
+            "38 x 46 in"
+          ],
+          [
+            "Holds",
+            "73 names"
+          ]
+        ],
+        "text": "Includes Flag to Remember coins and a dedication plate with the flag’s theme, number, dedication date, and Flag Host. Ships in a heavy-duty protective case so it arrives safely.",
+        "price": "$1,800",
+        "priceNote": "Shipping included",
+        "image": {
+          "src": "/images/framed-flag.jpg",
+          "width": 879,
+          "height": 810,
+          "alt": "Framed Flag to Remember with coins and dedication plate"
+        }
+      },
+      {
+        "name": "Standard Flag",
+        "specs": [
+          [
+            "Flag size",
+            "3 x 5 ft"
+          ],
+          [
+            "Holds",
+            "200 names"
+          ]
+        ],
+        "text": "Carried at awareness walks and ceremonies, or hung on a wall or from a high ceiling.",
+        "price": "$1,700",
+        "priceNote": "Shipping included",
+        "image": {
+          "src": "/images/standard-flag.jpg",
+          "width": 1024,
+          "height": 768,
+          "alt": "Standard 3 x 5 ft Flag to Remember"
+        }
+      },
+      {
+        "name": "Venue Flag",
+        "specs": [
+          [
+            "Flag size",
+            "5 x 8 ft"
+          ],
+          [
+            "Holds",
+            "245 names"
+          ]
+        ],
+        "text": "Hung on a wall or from a high ceiling, where it makes a lasting statement in the community.",
+        "price": "$2,200",
+        "priceNote": "Shipping included",
+        "image": {
+          "src": "/images/venue-flag.jpg",
+          "width": 1024,
+          "height": 768,
+          "alt": "Venue 5 x 8 ft Flag to Remember"
+        }
+      }
+    ],
+    "nonprofit": {
+      "title": "Nonprofit pricing",
+      "text": "501(c)(3) organizations have custom pricing. Reach out and we’ll share the details for your organization.",
+      "label": "Contact us",
+      "href": "/contact"
+    }
+  }
+}

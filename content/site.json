@@ -1,0 +1,40 @@
+{
+  "_source": "Live site header, footer and Add a Name page (email). Phone read from the Flag Host flyers (wp-content/uploads/2025/02/Flag-0xx.jpg); it appears on no page as text.",
+  "name": "Flag to Remember",
+  "legalName": "Flag to Remember Foundation",
+  "tagline": "Honoring Our Fallen Soldiers",
+  "mission": "To honor the legacy of our fallen heroes by creating memorial flags that preserve their names, tell their stories, and inspire communities to remember their service and sacrifices.",
+  "ein": "88-1652584",
+  "email": "anthony@flagtoremember.com",
+  "phone": { "display": "(206) 707-2247", "tel": "+12067072247" },
+  "social": [
+    { "label": "Facebook", "url": "https://www.facebook.com/flagtoremember/" },
+    { "label": "Instagram", "url": "https://www.instagram.com/flagtoremember/" }
+  ],
+  "nav": [
+    { "label": "Flags", "href": "/flags" },
+    { "label": "About", "href": "/about" },
+    { "label": "Process", "href": "/process" },
+    { "label": "Gallery", "href": "/gallery" },
+    { "label": "Name Registry", "href": "/name-registry" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "actions": [
+    { "label": "Add a Name", "href": "/add-name" },
+    { "label": "Donate", "href": "/donate" }
+  ],
+  "footer": [
+    { "title": "Flags", "links": [
+      { "label": "Add a Name", "href": "/add-name" },
+      { "label": "Donate", "href": "/donate" },
+      { "label": "Name Registry", "href": "/name-registry" },
+      { "label": "Flag Registry", "href": "/flags" }
+    ] },
+    { "title": "About", "links": [
+      { "label": "Learn More", "href": "/about" },
+      { "label": "Process", "href": "/process" },
+      { "label": "FAQ", "href": "/contact#faq" },
+      { "label": "Sponsor a Flag", "href": "/contact" }
+    ] }
+  ]
+}

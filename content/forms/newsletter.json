@@ -1,0 +1,18 @@
+{
+ "_source": "Gravity Forms form 6, the footer 'Stay Updated' signup on every page (live form, 2026-10-27).",
+ "id": 6,
+ "title": "Stay Updated",
+ "captcha": true,
+ "fields": [
+  {
+   "id": 1,
+   "type": "email",
+   "label": "Email",
+   "placeholder": "Email Address",
+   "required": true
+  }
+ ],
+ "_required": "Gravity Forms does not mark this email required; the site requires it so an empty signup can't be sent.",
+ "submitLabel": "Sign up",
+ "confirmation": "Thank you for signing up."
+}

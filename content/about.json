@@ -1,0 +1,31 @@
+{
+  "_source": "About page (/about/, modified 2026-09-25) and Our Team page (/our-team/: one person, Founder, shown four times, spelled 'Petersonn' there).",
+  "eyebrow": "Honoring the Fallen, One Name at a Time",
+  "title": "Remembering Those Who Gave Everything",
+  "intro": {
+    "title": "We Exist to Honor the Brave",
+    "text": "For more than 5 years, the Flag to Remember has traveled across the country in honor of our fallen."
+  },
+  "history": {
+    "title": "About & History",
+    "text": "By transforming name tapes into memorial flags, we give families and communities a way to remember, reflect, and continue conversations about service and sacrifice.",
+    "video": { "id": "Y9wjKJ_hlvI", "title": "Join the Mission: Remember Through the Flag" }
+  },
+  "founder": {
+    "eyebrow": "Our Founder",
+    "name": "Anthony Peterson",
+    "role": "Founder",
+    "paragraphs": [
+      "Anthony’s mission began with a single flag. A veteran himself, he lost friends to combat and suicide and wanted a way to carry their memories with him. That first flag became a symbol—then a movement.",
+      "Through Flag to Remember, Anthony has dedicated his life to ensuring no fallen hero is forgotten, bringing families and communities together through remembrance and reflection."
+    ],
+    "image": { "src": "/images/anthony-peterson.jpg", "width": 612, "height": 612, "alt": "Anthony Peterson, founder of Flag to Remember, in a television interview." }
+  },
+  "vision": {
+    "eyebrow": "Our Vision",
+    "text": "Our vision is to bring hundreds of flags across the country, each carrying the names of our fallen. Every name represents a life lived, a story worth telling, and a legacy that deserves to endure.",
+    "cta": "Help us honor them."
+  },
+  "teamIntro": "The Flag to Remember Team brings heartfelt dedication, visionary passion, and an unwavering commitment to honoring our nation’s heroes.",
+  "thanks": { "title": "Thank You", "text": "We couldn’t do it without your support." }
+}

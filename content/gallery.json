@@ -1,0 +1,57 @@
+{
+  "_source": "Gallery page (/gallery/: Press and Videos rows, deduplicated) and the old Our Journey page (/our-journey/, modified 2025-01-28: event write-ups, photos, Host a Flag form link).",
+  "title": "Gallery",
+  "lede": "Press, videos and photos from the road.",
+  "media": [
+    { "title": "A Symbol of Sacrifice: The Story of Flag to Remember", "meta": "11 Minutes", "kind": "Video", "url": "https://www.youtube.com/watch?v=XwYlP-GLjTg", "image": { "src": "/images/press/ftr-foundation.jpg", "width": 485, "height": 485, "alt": "" } },
+    { "title": "Flag to Remember Founder Making an Impact", "meta": "November 8th, 2024", "kind": "Press", "url": "https://www.youtube.com/watch?v=K4TYVYjEKoI", "image": { "src": "/images/press/ftr-founder.jpg", "width": 485, "height": 485, "alt": "" } },
+    { "title": "Let's Walk it Out 2025", "meta": "April 3rd-12th, 2025", "kind": "Press", "url": "https://www.youtube.com/watch?v=fnFGWjyrAVQ", "image": { "src": "/images/press/lets-walk-it-out-2025.jpg", "width": 485, "height": 485, "alt": "" } },
+    { "title": "Join the Mission: Remember Through the Flag", "meta": "2 Minutes", "kind": "Video", "url": "https://www.youtube.com/watch?v=Y9wjKJ_hlvI", "image": { "src": "/images/press/join-the-mission.jpg", "width": 485, "height": 485, "alt": "" } },
+    { "title": "V.E.T.S. Veterans Entrepreneur Training Seminar", "meta": "April 24, 2021", "kind": "Press", "url": "https://www.facebook.com/groups/122500493114561/", "image": { "src": "/images/press/vets-real-american-heroes.jpg", "width": 485, "height": 485, "alt": "" } },
+    { "title": "Let's Walk it Out 222 Mile Ruck March", "meta": "April 8th-April 17th 2021", "kind": "Press", "url": "https://abc11.com/lets-walk-it-out-222-mile-ruck-march-fort-bragg-camp-lejeune/10498919/", "image": { "src": "/images/press/lets-walk-it-out-2021.jpg", "width": 485, "height": 485, "alt": "" } },
+    { "title": "Stars and Stripes Celebrity Invitational", "meta": "May 15th-16th 2021", "kind": "Press", "url": "https://www.youtube.com/watch?v=pDuucZbf1fg", "image": { "src": "/images/press/stars-and-stripes.jpg", "width": 485, "height": 485, "alt": "" } }
+  ],
+  "journey": {
+    "title": "Our Journey",
+    "lede": "Honoring Our Fallen, Strengthening Our Communities",
+    "text": "Our flags focus on honoring our nation’s fallen Heroes, while also raising awareness to the sacrifices they made day to day, until their last day. Equally important, we constantly strive to raise awareness to the struggles of suicide amongst our Military/First Responders. With every flag we proudly display across the country we can help be the voice for the voiceless and help others understand what our heroes go through for our country.",
+    "events": [
+      {
+        "title": "Stars and Stripes Celebrity Invitational",
+        "date": "May 15th-16th 2021",
+        "text": "Stars and Stripes Celebrity Invitational is an event created to honor our military and first responder families for their service, sacrifices, and support to our country.",
+        "links": [
+          { "label": "Learn More", "url": "https://www.starsandstripesinvitational.org/" },
+          { "label": "Watch Video", "url": "https://www.youtube.com/watch?v=pDuucZbf1fg" }
+        ],
+        "image": { "src": "/images/photos/stars-and-stripes-invitational.jpg", "width": 1800, "height": 1200, "alt": "A parachutist landing on a lawn in front of a clubhouse while two men watch." }
+      },
+      {
+        "title": "V.E.T.S. Veterans Entrepreneur Training Seminar",
+        "date": "April 24, 2021",
+        "text": "V.E.T.S (Veterans Entrepreneur Training Seminar) was created to help inspire Veterans or anyone wishing to become a business owner.",
+        "links": [{ "label": "Learn More", "url": "https://www.facebook.com/groups/122500493114561/" }],
+        "image": { "src": "/images/photos/vets-seminar.jpg", "width": 279, "height": 206, "alt": "A man kneeling on stage beside a service dog under the V.E.T.S. Real American Heroes logo." }
+      },
+      {
+        "title": "Let’s Walk It Out",
+        "date": "April 8th-April 17th 2021",
+        "text": "Let’s Walk It Out is dedicated to preventing veteran suicide through implementing a public health approach to help eradicate the stigma attached to PTS and suicide.",
+        "links": [
+          { "label": "Learn More", "url": "https://www.letswalkitout.org/" },
+          { "label": "Watch Video", "url": "https://abc11.com/community-events/ft-bragg-active-service-members-veterans-start-march-to-camp-lejeune/10498919/" }
+        ],
+        "image": { "src": "/images/photos/lets-walk-it-out-group.jpg", "width": 1068, "height": 773, "alt": "Ruck marchers posing in front of a soldier statue at a museum." }
+      }
+    ],
+    "hostForm": { "label": "Host a Flag", "url": "https://docs.google.com/forms/d/e/1FAIpQLScvCBvYCSdNsMGp1DRRXb6TI3CXYp9Wb7ugi9XQGeTCQpEdHw/viewform" }
+  },
+  "photos": [
+    { "src": "/images/photos/flag-host-ceremony.jpg", "width": 1000, "height": 1333, "alt": "Flag to Remember flag being displayed at a hosting event." },
+    { "src": "/images/photos/man-holding-flag.jpg", "width": 1200, "height": 1800, "alt": "A man walking along a road carrying a Flag to Remember on a pole." },
+    { "src": "/images/photos/flag-and-group.jpg", "width": 1125, "height": 844, "alt": "Flag to Remember flag being held by group, along with partners' flags." },
+    { "src": "/images/photos/flag-on-jeep.jpg", "width": 1000, "height": 1333, "alt": "Flag to Remember flag being displayed on jeep." },
+    { "src": "/images/photos/boy-holding-flag.jpg", "width": 720, "height": 960, "alt": "A young boy holding the Flag to Remember flag, proudly above his head." },
+    { "src": "/images/photos/walk-it-out-group.jpg", "width": 960, "height": 720, "alt": "Ruck marchers in matching shirts gathered on a lawn with flags and a service dog." }
+  ]
+}

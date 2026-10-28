@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
+/* Colors from the foundation's logo: the black ring, the flag's navy union and red stripes,
+   and the sunset gold (only ever on dark grounds, where it passes contrast). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f6f3ec;
+  --paper-deep: #ece6da;
+  --ink: #16181d;
+  --muted: #565b64;
+  --line: #d9d1c1;
+  --navy: #1c2a48;
+  --navy-deep: #121c33;
+  --night: #0f1115;
+  --red: #a3262a;
+  --gold: #e3a83b;
+  --gold-soft: #f0c46e;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-night: var(--night);
+  --color-red: var(--red);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --font-serif: var(--font-serif-face), Georgia, serif;
+  --font-sans: var(--font-sans-face), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--navy);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.on-light :focus-visible,
+.on-light:focus-visible {
+  outline-color: var(--navy);
+}
+
+/* A thin red-white-navy rule, drawn from the flag's stripes. */
+.stripe-rule {
+  height: 4px;
+  background: linear-gradient(90deg, var(--red) 0 33.3%, var(--paper) 33.3% 66.6%, var(--navy) 66.6%);
+}
+
+.grecaptcha-badge {
+  visibility: hidden;
 }

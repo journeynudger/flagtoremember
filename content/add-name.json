@@ -1,0 +1,34 @@
+{
+  "_source": "Add Name page (/add-name/, modified 2026-09-25): the HTML blocks inside form 5.",
+  "title": "Add a Name",
+  "lede": "Register the name of a fallen Service Member or First Responder to be sewn onto our flags, at no cost.",
+  "process": {
+    "title": "Name Registration Process",
+    "steps": [
+      "Name Donors submit the name of a fallen Service Member or First Responder. If they served, they qualify to be honored regardless of the cause of death, in or after their service.",
+      "Throughout the year we will add your registered name(s) to our flags, nationwide, continuously.",
+      "You will receive all updates of your registered name(s) through your email."
+    ],
+    "social": "For all updates on Flag Dedication events (when and where your respective flags are being revealed), follow our Instagram and Facebook page.",
+    "profile": "Once a flag is dedicated with your name(s), you’ll receive a newsletter with a “Flag Profile” giving the Flag #, Flag Host organization, location, and information on how to visit the flag.",
+    "profileImage": { "src": "/images/flag-profile-example.jpg", "width": 540, "height": 675, "alt": "Example Flag Profile: Flag 012 at Fayetteville Regional Airport, with its dedication plate, address and contact details." }
+  },
+  "notes": {
+    "title": "Important Notes",
+    "text": "If you’ve already registered a name with us but want it added to a flag currently being built at a specific location, email us with your request.",
+    "warning": "Please don’t register the same name twice!"
+  },
+  "hosts": {
+    "title": "Flag Hosts include",
+    "text": "Nonprofit Organizations, Veteran Owned businesses, VFW/American Legion Posts, sports stadiums, airports, ski resorts, schools, motorcycle clubs, restaurants, police departments, fire stations, hospitals, concert halls, etc."
+  },
+  "nameTapes": {
+    "intro": "When selecting a name, you’ll choose a pattern for the name tape. These are the 9 options:",
+    "image": { "src": "/images/name-tape-options.jpg", "width": 1578, "height": 694, "alt": "The nine name tape patterns: Army ACU, Olive Drab, Army OCP, Marine Woodland, Marine Desert, Navy, Airforce, Firefighter (black tape) and Coast Guard/EMS/Law Enforcement (navy blue tape)." },
+    "guidance": "You can put formal rank and name, nicknames, dates etc. It’s extremely important that these names are unique and special to your memory of them. We encourage you to register your names in a way that is special to you and easily recognized on our flags.",
+    "examples": ["John \"Ace\" Smith 02/11/15", "John \"Dad\" Smith 02/11/15"]
+  },
+  "donation": {
+    "text": "We do encourage donations to help us cover the costs incurred for materials, labor, and shipping. For perspective $15 helps one name get added to a flag. Most common donation is $30 per name, to cover your name and help cover someone else's registered name."
+  }
+}

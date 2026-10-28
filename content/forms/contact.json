@@ -1,0 +1,49 @@
+{
+ "_source": "Gravity Forms form 8 on /contact/ (live form, 2026-10-27).",
+ "id": 8,
+ "title": "Contact",
+ "captcha": true,
+ "fields": [
+  {
+   "id": 1,
+   "type": "text",
+   "label": "Name or Business",
+   "required": true,
+   "autocomplete": "organization"
+  },
+  {
+   "id": 3,
+   "type": "email",
+   "label": "Email",
+   "required": true
+  },
+  {
+   "id": 7,
+   "type": "select",
+   "label": "Area of interest",
+   "required": true,
+   "placeholder": "Please select an area of interest.",
+   "options": [
+    "Donate/Sponsor a Flag",
+    "Learn how you can help from where you live.",
+    "Interested in a Partnership/Collaboration",
+    "Learn about other ways you can support our mission.",
+    "Issues or questions regarding a registered name.",
+    "Other"
+   ]
+  },
+  {
+   "id": 4,
+   "type": "textarea",
+   "label": "What are you interested in?",
+   "required": true
+  },
+  {
+   "id": 8,
+   "type": "textarea",
+   "label": "Additional comments or information"
+  }
+ ],
+ "submitLabel": "Send message",
+ "confirmation": "Thank you for reaching out. We’ll be in touch soon."
+}

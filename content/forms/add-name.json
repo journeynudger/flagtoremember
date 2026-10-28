@@ -1,0 +1,762 @@
+{
+ "_source": "Gravity Forms form 5 on /add-name/ (field ids, input names, option values and conditional logic read from the live form on 2026-10-27). Values must never change: Gravity Forms stores them as sent.",
+ "_fixed": "input_79 (Would you like to donate now?) is always sent as No: that branch opens a Stripe card field, and this site takes no payments. The confirmation links to the donation checkout instead.",
+ "id": 5,
+ "title": "Add a Name",
+ "captcha": true,
+ "pages": [
+  {
+   "title": "Contact Information",
+   "intro": "Please verify all information as we will use it to send you information about each flag built with your registered name."
+  },
+  {
+   "title": "Name Tape Options",
+   "intro": "Check all spelling before submitting a name. Once we sew a name on a flag we cannot correct the name."
+  },
+  {
+   "title": "Where and how you’d like to help",
+   "intro": "Registering a name is completely free."
+  }
+ ],
+ "fixed": {
+  "input_79": "No"
+ },
+ "optionSets": {
+  "branch": [
+   "Army",
+   "Marines",
+   "Navy",
+   "Airforce",
+   "Coast Guard",
+   "Law Enforcement",
+   "Firefighter",
+   "EMS"
+  ],
+  "pattern": [
+   "Army ACU",
+   "Olive Drab",
+   "Army OCP",
+   "Marine Woodland",
+   "Marine Desert",
+   "Navy",
+   "Airforce",
+   "Coast Guard/Law Enforcement/EMS",
+   "Firefighter"
+  ],
+  "cause": [
+   "Killed in Action/In The Line of Duty",
+   "Suicide",
+   "Training Accident",
+   "Natural Causes",
+   "Motor Vehicle Accident",
+   "Service Connected Illness",
+   "Prefer Not to Say",
+   "Other"
+  ],
+  "states": [
+   "Alabama",
+   "Alaska",
+   "American Samoa",
+   "Arizona",
+   "Arkansas",
+   "California",
+   "Colorado",
+   "Connecticut",
+   "Delaware",
+   "District of Columbia",
+   "Florida",
+   "Georgia",
+   "Guam",
+   "Hawaii",
+   "Idaho",
+   "Illinois",
+   "Indiana",
+   "Iowa",
+   "Kansas",
+   "Kentucky",
+   "Louisiana",
+   "Maine",
+   "Maryland",
+   "Massachusetts",
+   "Michigan",
+   "Minnesota",
+   "Mississippi",
+   "Missouri",
+   "Montana",
+   "Nebraska",
+   "Nevada",
+   "New Hampshire",
+   "New Jersey",
+   "New Mexico",
+   "New York",
+   "North Carolina",
+   "North Dakota",
+   "Northern Mariana Islands",
+   "Ohio",
+   "Oklahoma",
+   "Oregon",
+   "Pennsylvania",
+   "Puerto Rico",
+   "Rhode Island",
+   "South Carolina",
+   "South Dakota",
+   "Tennessee",
+   "Texas",
+   "Utah",
+   "U.S. Virgin Islands",
+   "Vermont",
+   "Virginia",
+   "Washington",
+   "West Virginia",
+   "Wisconsin",
+   "Wyoming",
+   "Armed Forces Americas",
+   "Armed Forces Europe",
+   "Armed Forces Pacific"
+  ]
+ },
+ "fields": [
+  {
+   "id": 6,
+   "page": 1,
+   "type": "name",
+   "label": "Name",
+   "required": true,
+   "inputs": [
+    {
+     "name": "input_6.3",
+     "label": "First",
+     "autocomplete": "given-name"
+    },
+    {
+     "name": "input_6.6",
+     "label": "Last",
+     "autocomplete": "family-name"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "page": 1,
+   "type": "phone",
+   "label": "Phone",
+   "required": true,
+   "placeholder": "(999) 999-9999"
+  },
+  {
+   "id": 8,
+   "page": 1,
+   "type": "email",
+   "label": "Email",
+   "required": true
+  },
+  {
+   "id": 11,
+   "page": 1,
+   "type": "select",
+   "label": "How many names would you like to add?",
+   "required": true,
+   "placeholder": "Please select a number",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  {
+   "id": 70,
+   "page": 2,
+   "type": "text",
+   "label": "Name to be sewn onto flag",
+   "description": "Up to 18 numbers/letters.",
+   "required": true,
+   "maxLength": 18,
+   "group": "Name 1"
+  },
+  {
+   "id": 18,
+   "page": 2,
+   "type": "select",
+   "label": "Branch of Service",
+   "required": true,
+   "placeholder": "Please select a branch",
+   "options": "branch",
+   "group": "Name 1"
+  },
+  {
+   "id": 15,
+   "page": 2,
+   "type": "select",
+   "label": "Pattern",
+   "required": true,
+   "placeholder": "Please select a pattern",
+   "options": "pattern",
+   "group": "Name 1"
+  },
+  {
+   "id": 16,
+   "page": 2,
+   "type": "select",
+   "label": "Cause of Death",
+   "required": true,
+   "placeholder": "Please select a cause",
+   "options": "cause",
+   "group": "Name 1"
+  },
+  {
+   "id": 17,
+   "page": 2,
+   "type": "text",
+   "label": "If other, please add the cause of death",
+   "required": true,
+   "showIf": {
+    "field": 16,
+    "in": [
+     "Other"
+    ]
+   },
+   "group": "Name 1"
+  },
+  {
+   "id": 71,
+   "page": 2,
+   "type": "text",
+   "label": "Name 2 to be sewn onto flag",
+   "description": "Up to 18 numbers/letters.",
+   "required": true,
+   "maxLength": 18,
+   "showIf": {
+    "field": 11,
+    "in": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 2"
+  },
+  {
+   "id": 24,
+   "page": 2,
+   "type": "select",
+   "label": "Branch of Service (Name 2)",
+   "required": true,
+   "placeholder": "Please select a branch",
+   "options": "branch",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 2"
+  },
+  {
+   "id": 21,
+   "page": 2,
+   "type": "select",
+   "label": "Pattern (Name 2)",
+   "required": true,
+   "placeholder": "Please select a pattern",
+   "options": "pattern",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 2"
+  },
+  {
+   "id": 22,
+   "page": 2,
+   "type": "select",
+   "label": "Cause of Death (Name 2)",
+   "required": true,
+   "placeholder": "Please select a cause",
+   "options": "cause",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 2"
+  },
+  {
+   "id": 23,
+   "page": 2,
+   "type": "text",
+   "label": "If other, please add the cause of death (Name 2)",
+   "required": true,
+   "showIf": {
+    "field": 22,
+    "in": [
+     "Other"
+    ],
+    "and": {
+     "field": 11,
+     "in": [
+      "2",
+      "3",
+      "4",
+      "5"
+     ]
+    }
+   },
+   "group": "Name 2"
+  },
+  {
+   "id": 72,
+   "page": 2,
+   "type": "text",
+   "label": "Name 3 to be sewn onto flag",
+   "description": "Up to 18 numbers/letters.",
+   "required": true,
+   "maxLength": 18,
+   "showIf": {
+    "field": 11,
+    "in": [
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 3"
+  },
+  {
+   "id": 31,
+   "page": 2,
+   "type": "select",
+   "label": "Branch of Service (Name 3)",
+   "required": true,
+   "placeholder": "Please select a branch",
+   "options": "branch",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 3"
+  },
+  {
+   "id": 28,
+   "page": 2,
+   "type": "select",
+   "label": "Pattern (Name 3)",
+   "required": true,
+   "placeholder": "Please select a pattern",
+   "options": "pattern",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 3"
+  },
+  {
+   "id": 29,
+   "page": 2,
+   "type": "select",
+   "label": "Cause of Death (Name 3)",
+   "required": true,
+   "placeholder": "Please select a cause",
+   "options": "cause",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "3",
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 3"
+  },
+  {
+   "id": 30,
+   "page": 2,
+   "type": "text",
+   "label": "If other, please add the cause of death (Name 3)",
+   "required": true,
+   "showIf": {
+    "field": 29,
+    "in": [
+     "Other"
+    ],
+    "and": {
+     "field": 11,
+     "in": [
+      "3",
+      "4",
+      "5"
+     ]
+    }
+   },
+   "group": "Name 3"
+  },
+  {
+   "id": 73,
+   "page": 2,
+   "type": "text",
+   "label": "Name 4 to be sewn onto flag",
+   "description": "Up to 18 numbers/letters.",
+   "required": true,
+   "maxLength": 18,
+   "showIf": {
+    "field": 11,
+    "in": [
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 4"
+  },
+  {
+   "id": 37,
+   "page": 2,
+   "type": "select",
+   "label": "Branch of Service (Name 4)",
+   "required": true,
+   "placeholder": "Please select a branch",
+   "options": "branch",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 4"
+  },
+  {
+   "id": 34,
+   "page": 2,
+   "type": "select",
+   "label": "Pattern (Name 4)",
+   "required": true,
+   "placeholder": "Please select a pattern",
+   "options": "pattern",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 4"
+  },
+  {
+   "id": 35,
+   "page": 2,
+   "type": "select",
+   "label": "Cause of Death (Name 4)",
+   "required": true,
+   "placeholder": "Please select a cause",
+   "options": "cause",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "4",
+     "5"
+    ]
+   },
+   "group": "Name 4"
+  },
+  {
+   "id": 36,
+   "page": 2,
+   "type": "text",
+   "label": "If other, please add the cause of death (Name 4)",
+   "required": true,
+   "showIf": {
+    "field": 35,
+    "in": [
+     "Other"
+    ],
+    "and": {
+     "field": 11,
+     "in": [
+      "4",
+      "5"
+     ]
+    }
+   },
+   "group": "Name 4"
+  },
+  {
+   "id": 74,
+   "page": 2,
+   "type": "text",
+   "label": "Name 5 to be sewn onto flag",
+   "description": "Up to 18 numbers/letters.",
+   "required": true,
+   "maxLength": 18,
+   "showIf": {
+    "field": 11,
+    "in": [
+     "5"
+    ]
+   },
+   "group": "Name 5"
+  },
+  {
+   "id": 43,
+   "page": 2,
+   "type": "select",
+   "label": "Branch of Service (Name 5)",
+   "required": true,
+   "placeholder": "Please select a branch",
+   "options": "branch",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "5"
+    ]
+   },
+   "group": "Name 5"
+  },
+  {
+   "id": 40,
+   "page": 2,
+   "type": "select",
+   "label": "Pattern (Name 5)",
+   "required": true,
+   "placeholder": "Please select a pattern",
+   "options": "pattern",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "5"
+    ]
+   },
+   "group": "Name 5"
+  },
+  {
+   "id": 41,
+   "page": 2,
+   "type": "select",
+   "label": "Cause of Death (Name 5)",
+   "required": true,
+   "placeholder": "Please select a cause",
+   "options": "cause",
+   "showIf": {
+    "field": 11,
+    "in": [
+     "5"
+    ]
+   },
+   "group": "Name 5"
+  },
+  {
+   "id": 42,
+   "page": 2,
+   "type": "text",
+   "label": "If other, please add the cause of death (Name 5)",
+   "required": true,
+   "showIf": {
+    "field": 41,
+    "in": [
+     "Other"
+    ],
+    "and": {
+     "field": 11,
+     "in": [
+      "5"
+     ]
+    }
+   },
+   "group": "Name 5"
+  },
+  {
+   "id": 87,
+   "page": 3,
+   "type": "address",
+   "label": "Primary city and state",
+   "description": "Choose a Primary and Alternate city and state you’d like to see your registered name on a flag, preferably two different states.",
+   "required": true,
+   "inputs": [
+    {
+     "name": "input_87.3",
+     "label": "City",
+     "autocomplete": "off"
+    },
+    {
+     "name": "input_87.4",
+     "label": "State",
+     "options": "states"
+    }
+   ]
+  },
+  {
+   "id": 88,
+   "page": 3,
+   "type": "address",
+   "label": "Alternate City and State",
+   "required": true,
+   "inputs": [
+    {
+     "name": "input_88.3",
+     "label": "City",
+     "autocomplete": "off"
+    },
+    {
+     "name": "input_88.4",
+     "label": "State",
+     "options": "states"
+    }
+   ]
+  },
+  {
+   "id": 90,
+   "page": 3,
+   "type": "radio",
+   "label": "Is there a flag being advertised that needs names, that you want your registered name(s) to be added to?",
+   "description": "If yes, what is the name of the business/organization?",
+   "required": true,
+   "options": [
+    "Yes",
+    "No"
+   ]
+  },
+  {
+   "id": 100,
+   "page": 3,
+   "type": "text",
+   "label": "Organization Name",
+   "required": true,
+   "showIf": {
+    "field": 90,
+    "in": [
+     "Yes"
+    ]
+   }
+  },
+  {
+   "id": 101,
+   "page": 3,
+   "type": "name",
+   "label": "Name of Contact",
+   "inputs": [
+    {
+     "name": "input_101.3",
+     "label": "First"
+    },
+    {
+     "name": "input_101.6",
+     "label": "Last"
+    }
+   ],
+   "showIf": {
+    "field": 90,
+    "in": [
+     "Yes"
+    ]
+   }
+  },
+  {
+   "id": 102,
+   "page": 3,
+   "type": "email",
+   "label": "Contact Email",
+   "showIf": {
+    "field": 90,
+    "in": [
+     "Yes"
+    ]
+   }
+  },
+  {
+   "id": 103,
+   "page": 3,
+   "type": "phone",
+   "label": "Contact Phone Number",
+   "placeholder": "(999) 999-9999",
+   "showIf": {
+    "field": 90,
+    "in": [
+     "Yes"
+    ]
+   }
+  },
+  {
+   "id": 76,
+   "page": 3,
+   "type": "radio",
+   "label": "Would you like to share more about your hero?",
+   "description": "If yes, we'll send you a form to share stories, memories, and pictures about your fallen, and share them within the Flag to Remember community.",
+   "required": true,
+   "options": [
+    "Yes, I'd like to share",
+    "No"
+   ]
+  },
+  {
+   "id": 91,
+   "page": 3,
+   "type": "radio",
+   "label": "Would you be interested in helping our foundation get more flags in your area or other areas, in the future?",
+   "required": true,
+   "options": [
+    "Yes",
+    "No"
+   ]
+  },
+  {
+   "id": 93,
+   "page": 3,
+   "type": "address",
+   "label": "Where do you live?",
+   "required": true,
+   "inputs": [
+    {
+     "name": "input_93.3",
+     "label": "City",
+     "autocomplete": "address-level2"
+    },
+    {
+     "name": "input_93.4",
+     "label": "State",
+     "options": "states"
+    }
+   ],
+   "showIf": {
+    "field": 91,
+    "in": [
+     "Yes"
+    ]
+   }
+  },
+  {
+   "id": 94,
+   "page": 3,
+   "type": "radio",
+   "label": "Would you like to sponsor a flag and donate it to a specific location or organization?",
+   "description": "If yes, we'll contact you in the future for more information.",
+   "required": true,
+   "options": [
+    "Yes",
+    "No"
+   ]
+  }
+ ],
+ "submitLabel": "Register names",
+ "confirmation": "Thank you. Your names are registered, and we’ll email you updates as each flag with your registered names is built."
+}

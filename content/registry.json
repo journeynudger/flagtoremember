@@ -1,0 +1,10 @@
+{
+  "_source": "Name Registry page (/name-registry/): the Airtable shared view, embedded exactly as before.",
+  "title": "Name Registry",
+  "text": [
+    "Search every registered name and see which flag it is honored on. On a computer you can filter by Branch, Cause of Death and Flag Number. The easiest way to find a name is to click the magnifying glass and type the name in.",
+    "On a phone, filtering and search are not available inside the embedded registry: open it full screen instead."
+  ],
+  "embedUrl": "https://airtable.com/embed/appz2rK239E1b3rXD/shrtQ3zbDp9T6RDfy?layout=card&viewControls=on",
+  "openUrl": "https://airtable.com/appz2rK239E1b3rXD/shrtQ3zbDp9T6RDfy"
+}

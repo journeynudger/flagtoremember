@@ -1,0 +1,137 @@
+{
+  "_source": "Flag Registry page (/flags/: 001-012 with flyers, host links, Flag 002 memorial) merged with the home page's state map (002-018 with host, date, city). Addresses and host phones are read from each flyer image; they are not text anywhere on the old site.",
+  "_note": "Order and wording as published. 'Feburary' on /flags/ is corrected to February. Flags 013-018 appear only on the home page map, with no flyer or host link.",
+  "flags": [
+    {
+      "number": "001",
+      "title": "FTR Travel Flag",
+      "description": "This flag travels with Anthony as he shares his mission with future Flag Hosts and Name Donors.",
+      "dedicated": "July 27th, 2024",
+      "image": { "src": "/images/flags/flag-001.jpg", "width": 540, "height": 675, "alt": "Flag 001 flyer: Anthony Peterson running with the FTR Travel Flag at the Running with Heroes Ultramarathon 2024." }
+    },
+    {
+      "number": "002",
+      "host": "Off-Road Outreach",
+      "hostUrl": "https://offroadoutreach.com/",
+      "city": "Fayetteville", "state": "North Carolina", "stateCode": "NC",
+      "dedicated": "April 8th, 2021",
+      "hostPhone": "(910) 526-0820",
+      "image": { "src": "/images/flags/flag-002.jpg", "width": 540, "height": 675, "alt": "Flag 002 flyer: photos of the flag with Off-Road Outreach in Fayetteville, North Carolina." },
+      "memorial": {
+        "name": "SSG Wade Langley",
+        "fullName": "SSG Wade Langley Jr.",
+        "lifespan": "March 9, 1983 – March 29, 2014",
+        "bio": "SSG Wade Langley Jr., born on March 9, 1983, in Columbus, Ohio, enlisted in the U.S. Army after the events of 9-11. During his 12 years of service, he deployed three times in support of Combat Operations during the Global War on Terror and received numerous awards for his dedication. Wade was known for his love of family, the outdoors, shooting, and riding four-wheelers, and he was a die-hard Ohio State Buckeye fan who could always make you laugh and seemed to know the answer to everything Buckeye's. On March 29, 2014, he passed away due to PTSD, leaving behind a legacy as an outstanding soldier, a loving husband, and a wonderful friend. His impact on the world is everlasting—forever missed but never forgotten.",
+        "image": { "src": "/images/flags/ssg-wade-langley.jpg", "width": 281, "height": 352, "alt": "SSG Wade Langley Jr." }
+      }
+    },
+    {
+      "number": "003",
+      "host": "VFW Post 5948",
+      "hostUrl": "https://www.facebook.com/TehachapiMountainVFWPost5948/",
+      "city": "Tehachapi", "state": "California", "stateCode": "CA",
+      "dedicated": "April 1st, 2025",
+      "image": { "src": "/images/flags/flag-003.jpg", "width": 720, "height": 960, "alt": "A Flag to Remember hung on a wall above a soldier's rucksack, boots and gear." }
+    },
+    {
+      "number": "004",
+      "host": "VFW Post 670",
+      "hostUrl": "https://vfw670.org/",
+      "city": "Fayetteville", "state": "North Carolina", "stateCode": "NC",
+      "dedicated": "July 24th, 2021",
+      "address": "3928 Doc Bennett Rd, Fayetteville, NC", "hostPhone": "(910) 424-8675",
+      "image": { "src": "/images/flags/flag-004.jpg", "width": 540, "height": 675, "alt": "Flag 004 flyer: the framed flag on display at VFW Post 670." }
+    },
+    {
+      "number": "005",
+      "host": "Cape Fear Valley Hospice Care",
+      "hostUrl": "https://lhcgroup.com/locations/cape-fear-valley-hospice-and-palliative-care/",
+      "city": "Fayetteville", "state": "North Carolina", "stateCode": "NC",
+      "dedicated": "September 27th, 2021",
+      "address": "2301 Robeson St, Fayetteville, NC", "hostPhone": "(910) 609-6710",
+      "image": { "src": "/images/flags/flag-005.jpg", "width": 540, "height": 675, "alt": "Flag 005 flyer: the flag displayed beside a memorial table at Cape Fear Valley Hospice Care." }
+    },
+    {
+      "number": "006",
+      "host": "VFW Post 6018",
+      "hostUrl": "https://www.facebook.com/VFWPost6018FayNC/",
+      "city": "Fayetteville", "state": "North Carolina", "stateCode": "NC",
+      "dedicated": "November 20th, 2021",
+      "address": "116 Chance St, Fayetteville, NC", "hostPhone": "(910) 323-3755",
+      "image": { "src": "/images/flags/flag-006.jpg", "width": 540, "height": 675, "alt": "Flag 006 flyer: members of VFW Post 6018 standing with the framed flag." },
+      "memorial": { "name": "SGM Youther C. Eaford", "lifespan": "December 5, 1944 – April 22, 2020" }
+    },
+    {
+      "number": "007",
+      "host": "Let's Walk It Out 222+ Mile Ruck March & Charlie Mike's Pub",
+      "hosts": [
+        { "name": "Let's Walk It Out 222+ Mile Ruck March", "url": "https://www.letswalkitout.org/" },
+        { "name": "Charlie Mike's Pub", "url": "https://www.facebook.com/charliemikesofficial/" }
+      ],
+      "city": "Fayetteville", "state": "North Carolina", "stateCode": "NC",
+      "dedicated": "December 4th, 2021",
+      "address": "195 Starpointe Dr, Fayetteville, NC 28303", "hostPhone": "(910) 339-8005",
+      "image": { "src": "/images/flags/flag-007.jpg", "width": 540, "height": 675, "alt": "Flag 007 flyer: four men and a service dog holding the flag at Charlie Mike's Pub." }
+    },
+    {
+      "number": "008",
+      "host": "Veterans of Foreign Wars Post 4542",
+      "hostUrl": "https://www.facebook.com/VFW4542/",
+      "city": "Spring Lake", "state": "North Carolina", "stateCode": "NC",
+      "dedicated": "February 1st, 2023",
+      "address": "1241 Pine Knoll Drive, Spring Lake, NC", "hostPhone": "(910) 497-5751",
+      "image": { "src": "/images/flags/flag-008.jpg", "width": 540, "height": 675, "alt": "Flag 008 flyer: the framed flag being presented at VFW Post 4542." }
+    },
+    {
+      "number": "009A",
+      "host": "Segra Stadium",
+      "hostUrl": "https://www.segrastadium.com/",
+      "city": "Fayetteville", "state": "North Carolina", "stateCode": "NC",
+      "dedicated": "May 13th, 2022",
+      "address": "460 Hay St, Fayetteville, NC", "hostPhone": "(910) 339-1989",
+      "image": { "src": "/images/flags/flag-009a.jpg", "width": 540, "height": 675, "alt": "Flag 009A flyer: the flag on Segra Stadium's big screen and framed on a wall." }
+    },
+    {
+      "number": "009B",
+      "host": "Nine Line Apparel Headquarters",
+      "hostUrl": "https://www.ninelineapparel.com/",
+      "city": "Savannah", "state": "Georgia", "stateCode": "GA",
+      "dedicated": "April 29th, 2023",
+      "hostPhone": "(912) 480-4250",
+      "image": { "src": "/images/flags/flag-009b.jpg", "width": 540, "height": 675, "alt": "Flag 009B flyer: the flag hanging from the ceiling at Nine Line Apparel headquarters." }
+    },
+    {
+      "number": "010",
+      "host": "Fit4Life, Owen Drive",
+      "hostUrl": "https://fit4lifehealthclubs.com/fayetteville-owen-dr/",
+      "city": "Fayetteville", "state": "North Carolina", "stateCode": "NC",
+      "dedicated": "September 4th, 2024",
+      "address": "210 Owen Dr, Fayetteville, NC", "hostPhone": "(910) 223-9970",
+      "image": { "src": "/images/flags/flag-010.jpg", "width": 540, "height": 675, "alt": "Flag 010 flyer: the flag on the wall at Fit4Life Health Club." }
+    },
+    {
+      "number": "011",
+      "host": "Wana Navu Kava Bar",
+      "hostUrl": "https://www.wananavukava.com/",
+      "city": "Fayetteville", "state": "North Carolina", "stateCode": "NC",
+      "dedicated": "December 13th, 2024",
+      "address": "500 N Reilly Rd, Fayetteville, NC 28303", "hostPhone": "(910) 339-1822",
+      "image": { "src": "/images/flags/flag-011.jpg", "width": 540, "height": 675, "alt": "Flag 011 flyer: the framed flag with guests outside Wana Navu Kava Bar." }
+    },
+    {
+      "number": "012",
+      "host": "Fayetteville Regional Airport",
+      "hostUrl": "https://www.fayettevillenc.gov/City-Departments/Airport/Airport-Media-Releases/FAY-airport-unveils-flag-honoring-fallen-soldiers-and-first-responders",
+      "city": "Fayetteville", "state": "North Carolina", "stateCode": "NC",
+      "dedicated": "November 11th, 2024",
+      "address": "400 Airport Rd, Fayetteville, NC", "hostPhone": "(910) 433-1160",
+      "image": { "src": "/images/flags/flag-012.jpg", "width": 540, "height": 675, "alt": "Flag 012 flyer: the framed flag at Fayetteville Regional Airport with its dedication plate." }
+    },
+    { "number": "013", "host": "Olde Raleigh Distillery", "city": "Fayetteville", "state": "North Carolina", "stateCode": "NC", "dedicated": "December 13th, 2024" },
+    { "number": "014", "host": "Invictus Jiu Jitsu", "city": "Jacksonville", "state": "Florida", "stateCode": "FL", "dedicated": "April 26th, 2025" },
+    { "number": "015", "host": "Warped Wing Brewery", "city": "Huber Heights", "state": "Ohio", "stateCode": "OH", "dedicated": "May 31st, 2025" },
+    { "number": "016", "host": "One Family Brewing", "city": "Lovettsville", "state": "Virginia", "stateCode": "VA", "dedicated": "May 26th, 2025" },
+    { "number": "017", "host": "10th Mountain Whiskey & Spirits", "city": "Gypsum", "state": "Colorado", "stateCode": "CO", "dedicated": "Pending" },
+    { "number": "018", "host": "Dirtbags Alehouse", "city": "Hope Mills", "state": "North Carolina", "stateCode": "NC", "dedicated": "Pending" }
+  ]
+}

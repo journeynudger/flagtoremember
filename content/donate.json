@@ -1,0 +1,8 @@
+{
+  "_source": "Donate page (/donate/, modified 2026-09-16). The card form is Gravity Forms form 10 with the Stripe add-on; this site does not take payments, it links to that checkout.",
+  "title": "Support the Mission. Honor the Fallen.",
+  "text": "The cost to sew one name onto a flag is $15—and by donating $30, you ensure another family’s fallen hero is honored as well. Your generosity helps keep these memories alive, uniting our communities in gratitude, and ensures their sacrifices are never forgotten. Join us in keeping these legacies alive—together, we remember, we honor, and we heal.",
+  "checkoutPath": "/donate/",
+  "checkoutLabel": "Donate securely",
+  "checkoutNote": "Card payments are processed by Stripe on our secure donation form."
+}
