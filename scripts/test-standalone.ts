@@ -8,6 +8,26 @@ import { verifyCaptcha } from "../lib/submissions/captcha";
 import { emailHtml, subscribe, sendEmail } from "../lib/submissions/notifications";
 import { donationAmount, paidDonation, stripeClient, STRIPE_PURPOSE } from "../lib/submissions/stripe";
 import { previewTesting, assertDataEnvironment, PRODUCTION_BASE } from "../lib/submissions/environment";
+import { legacyStripeActive } from "../lib/submissions/legacy-stripe";
+import { POST as legacyCallback } from "../app/api/stripe/legacy/route";
+
+test("legacy callback expires and rejects missing signatures without contacting the old host", async () => {
+  assert.equal(legacyStripeActive("", 1000), false);
+  assert.equal(legacyStripeActive("invalid", 1000), false);
+  assert.equal(legacyStripeActive("2026-11-04T00:00:00Z", Date.parse("2026-11-04T00:00:00Z")), false);
+  assert.equal(legacyStripeActive("2026-11-04T00:00:00Z", Date.parse("2026-11-03T23:59:59Z")), true);
+  const old = process.env.FTR_LEGACY_STRIPE_UNTIL;
+  try {
+    delete process.env.FTR_LEGACY_STRIPE_UNTIL;
+    assert.equal((await legacyCallback(new Request("https://example.com", { method: "POST" }))).status, 410);
+    process.env.FTR_LEGACY_STRIPE_UNTIL = new Date(Date.now() + 60_000).toISOString();
+    assert.equal((await legacyCallback(new Request("https://example.com", { method: "POST" }))).status, 400);
+    assert.equal((await legacyCallback(new Request("https://example.com", { method: "POST", headers: { "stripe-signature": "test", "content-length": "1000001" } }))).status, 413);
+  } finally {
+    if (old === undefined) delete process.env.FTR_LEGACY_STRIPE_UNTIL;
+    else process.env.FTR_LEGACY_STRIPE_UNTIL = old;
+  }
+});
 
 const id = "67e55044-10b1-426f-9247-bb680e5fe0c8";
 const donor = {

@@ -32,7 +32,11 @@ const nextConfig: NextConfig = {
     return {
       // Keep Stripe's existing webhook URL working after the public domain moves.
       // WordPress still verifies the original signature and processes the payment event.
-      beforeFiles: process.env.FTR_STANDALONE === "true" ? [] : [{
+      beforeFiles: process.env.FTR_STANDALONE === "true" ? [{
+        source: "/",
+        has: [{ type: "query", key: "callback", value: "gravityformsstripe" }],
+        destination: "/api/stripe/legacy",
+      }] : [{
         source: "/",
         has: [{ type: "query", key: "callback", value: "gravityformsstripe" }],
         destination: `${origin}/?callback=gravityformsstripe`,
