@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container, pillClass } from "@/components/ui";
 import { donate, site, wordpressOrigin } from "@/lib/content";
+import DonationForm from "@/components/forms/DonationForm";
 
 export const metadata: Metadata = {
   title: "Donate",
@@ -26,10 +27,10 @@ export default function DonatePage() {
       </div>
 
       <div className="mt-10">
-        <a href={checkout} className={pillClass("red", "lg")}>
+        {process.env.FTR_STANDALONE === "true" ? <DonationForm /> : <><a href={checkout} className={pillClass("red", "lg")}>
           <span className="px-6">{donate.checkoutLabel}</span>
         </a>
-        <p className="mt-4 text-sm text-muted">{donate.checkoutNote}</p>
+        <p className="mt-4 text-sm text-muted">{donate.checkoutNote}</p></>}
       </div>
 
       <p className="mt-14 text-sm leading-relaxed text-muted">

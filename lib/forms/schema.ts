@@ -55,7 +55,7 @@ export const addNameDef = forms[5];
 export const contactDef = forms[8];
 export const newsletterDef = forms[6];
 
-export const RECAPTCHA_SITE_KEY = "6LfgWxIeAAAAAOMXDjGX4OKzIWLC7OvLfyk1sMc9";
+export const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LfgWxIeAAAAAOMXDjGX4OKzIWLC7OvLfyk1sMc9";
 
 /** The input names one field owns. */
 export const inputNames = (f: Field) => (f.inputs ? f.inputs.map((i) => i.name) : [`input_${f.id}`]);

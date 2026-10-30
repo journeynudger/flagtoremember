@@ -18,7 +18,14 @@ export const viewport: Viewport = { themeColor: "#ffffff" };
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body>{children}</body>
+      <body>
+        {process.env.FTR_INTEGRATION_TEST === "true" && process.env.VERCEL_ENV === "preview" && (
+          <div role="note" style={{ background: "#ffedc2", color: "#332400", padding: "12px 20px", textAlign: "center", fontSize: 14 }}>
+            Test website. Donations use test cards only. Forms do not register real names or send emails.
+          </div>
+        )}
+        {children}
+      </body>
     </html>
   );
 }
