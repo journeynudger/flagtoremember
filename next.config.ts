@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 import { withWorkflow } from "workflow/next";
 
+if (process.env.VERCEL_ENV === "production" &&
+    (process.env.FTR_INTEGRATION_TEST === "true" ||
+     process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY === "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI")) {
+  throw new Error("Preview test settings must not be deployed to production");
+}
+
 // Old WordPress URLs with no page of their own here. WordPress URLs end in "/", so each
 // source also matches the slash form: every old link lands in a single 308.
 const moved: [string, string][] = [

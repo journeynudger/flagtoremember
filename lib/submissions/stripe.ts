@@ -2,7 +2,14 @@ import Stripe from "stripe";
 import { required } from "./airtable";
 import type { Donation } from "./mapping";
 
-export const stripeClient = () => new Stripe(required("STRIPE_SECRET_KEY"));
+export const stripeClient = () => {
+  const key = required("STRIPE_SECRET_KEY");
+  if ((process.env.VERCEL_ENV === "preview" && !/^[rs]k_test_/.test(key)) ||
+      (process.env.VERCEL_ENV === "production" && !/^[rs]k_live_/.test(key))) {
+    throw new Error("Stripe key does not match deployment environment");
+  }
+  return new Stripe(key);
+};
 export const STRIPE_PURPOSE = "ftr-website-donation";
 
 export function donationAmount(amount: unknown): number | null {
@@ -13,6 +20,7 @@ export function donationAmount(amount: unknown): number | null {
 
 /** Only paid sessions created by this site's checkout are recorded. */
 export function paidDonation(session: Stripe.Checkout.Session): Donation | null {
+  if (session.livemode !== (process.env.VERCEL_ENV === "production")) return null;
   if (session.metadata?.purpose !== STRIPE_PURPOSE || session.mode !== "payment" ||
     session.payment_status !== "paid" || session.currency !== "usd" || !session.amount_total || session.amount_total < 100) return null;
   const email = session.customer_details?.email || session.customer_email;

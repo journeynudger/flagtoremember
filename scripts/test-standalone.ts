@@ -5,8 +5,9 @@ import type Stripe from "stripe";
 import { formBatches, submission, donationBatch, SUBMISSION_FIELD, TABLES } from "../lib/submissions/mapping";
 import { saveBatch } from "../lib/submissions/airtable";
 import { verifyCaptcha } from "../lib/submissions/captcha";
-import { emailHtml, subscribe } from "../lib/submissions/notifications";
-import { donationAmount, paidDonation, STRIPE_PURPOSE } from "../lib/submissions/stripe";
+import { emailHtml, subscribe, sendEmail } from "../lib/submissions/notifications";
+import { donationAmount, paidDonation, stripeClient, STRIPE_PURPOSE } from "../lib/submissions/stripe";
+import { previewTesting, assertDataEnvironment, PRODUCTION_BASE } from "../lib/submissions/environment";
 
 const id = "67e55044-10b1-426f-9247-bb680e5fe0c8";
 const donor = {
@@ -63,13 +64,56 @@ test("donation amounts reject invalid precision, nonpositive and oversized amoun
 });
 
 test("only a paid USD donation from this checkout can produce a donation record", () => {
-  const session = { id: "cs_test_fixture", metadata: { purpose: STRIPE_PURPOSE }, mode: "payment", payment_status: "paid", currency: "usd", amount_total: 3050, customer_details: { name: "Test Donor", email: "test@example.com" } } as unknown as Stripe.Checkout.Session;
-  for (const changes of [{ payment_status: "unpaid" }, { currency: "eur" }, { metadata: {} }, { mode: "subscription" }]) assert.equal(paidDonation({ ...session, ...changes } as Stripe.Checkout.Session), null);
+  const session = { id: "cs_test_fixture", livemode: false, metadata: { purpose: STRIPE_PURPOSE }, mode: "payment", payment_status: "paid", currency: "usd", amount_total: 3050, customer_details: { name: "Test Donor", email: "test@example.com" } } as unknown as Stripe.Checkout.Session;
+  for (const changes of [{ payment_status: "unpaid" }, { currency: "eur" }, { metadata: {} }, { mode: "subscription" }, { livemode: true }]) assert.equal(paidDonation({ ...session, ...changes } as Stripe.Checkout.Session), null);
   const d = paidDonation(session)!;
   const row = donationBatch(d).records[0].fields;
   assert.equal(row[SUBMISSION_FIELD], "stripe:cs_test_fixture");
   assert.equal(row.fldeTD0iGayQpfNKy, 30.5);
   assert.equal(row.fldiDeBxioLEJGr4W, "0");
+});
+
+test("preview tests cannot use production data, live payments, or send real notifications", async (t) => {
+  const keys = ["VERCEL_ENV", "FTR_INTEGRATION_TEST", "AIRTABLE_BASE_ID", "AIRTABLE_TOKEN", "AIRTABLE_TEST_SCHEMA_MAP", "FTR_TEST_OUTBOX_TABLE", "STRIPE_SECRET_KEY", "RECAPTCHA_SECRET_KEY"];
+  const old = keys.map((k) => process.env[k]);
+  const calls: { url: string; body: Record<string, unknown> }[] = [];
+  t.mock.method(globalThis, "fetch", async (url: string | URL | Request, init?: RequestInit) => {
+    calls.push({ url: String(url), body: JSON.parse(String(init?.body)) });
+    return Response.json({ records: [{}] });
+  });
+  try {
+    process.env.VERCEL_ENV = "preview";
+    delete process.env.FTR_INTEGRATION_TEST;
+    assert.throws(assertDataEnvironment, /isolation/);
+    process.env.FTR_INTEGRATION_TEST = "true";
+    process.env.AIRTABLE_BASE_ID = PRODUCTION_BASE;
+    assert.throws(previewTesting, /isolated/);
+    process.env.AIRTABLE_BASE_ID = "app00000000000000";
+    process.env.AIRTABLE_TOKEN = "fake-token";
+    process.env.AIRTABLE_TEST_SCHEMA_MAP = JSON.stringify({ [TABLES.contact]: { tableId: "tbl00000000000000", fields: { fldjKh2Mbg1DuDQoM: "fld00000000000000", fld2k2AINWX08ePdm: "fld11111111111111" } } });
+    process.env.FTR_TEST_OUTBOX_TABLE = "tbl22222222222222";
+    await saveBatch(formBatches(submission(6, id, { input_1: "preview@example.com" }))[0]);
+    assert.ok(calls[0].url.includes("app00000000000000/tbl00000000000000"));
+    const written = calls[0].body.records as { fields: Record<string, unknown> }[];
+    assert.equal(written[0].fields.fld00000000000000, "preview@example.com");
+    await sendEmail("contact", "preview@example.com", "Preview", id);
+    await subscribe("preview@example.com");
+    assert.equal(calls.length, 3);
+    assert.ok(calls.slice(1).every(c => c.url.endsWith("/tbl22222222222222")));
+    process.env.STRIPE_SECRET_KEY = "rk_live_fake";
+    assert.throws(stripeClient, /environment/);
+    process.env.STRIPE_SECRET_KEY = "rk_test_fake";
+    assert.doesNotThrow(stripeClient);
+    process.env.VERCEL_ENV = "production";
+    assert.throws(previewTesting, /isolated/);
+    delete process.env.FTR_INTEGRATION_TEST;
+    assert.throws(assertDataEnvironment, /does not match/);
+    assert.throws(stripeClient, /environment/);
+    process.env.RECAPTCHA_SECRET_KEY = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+    await assert.rejects(verifyCaptcha("token"), /Test CAPTCHA/);
+  } finally {
+    keys.forEach((k, i) => { if (old[i] === undefined) delete process.env[k]; else process.env[k] = old[i]; });
+  }
 });
 
 test("confirmation templates escape names and use locally hosted image assets", () => {

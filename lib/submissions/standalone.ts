@@ -4,9 +4,17 @@ import { required, saveBatch } from "./airtable";
 import { formBatches, submission } from "./mapping";
 import { verifyCaptcha } from "./captcha";
 import type { Values } from "@/lib/forms/schema";
+import { assertDataEnvironment, previewTesting } from "./environment";
 
 export function assertReady(formId: number) {
-  for (const key of ["AIRTABLE_TOKEN", "RECAPTCHA_SECRET_KEY", "FTR_GMAIL_ADDRESS", "FTR_GMAIL_APP_PASSWORD"]) required(key);
+  assertDataEnvironment();
+  for (const key of ["AIRTABLE_TOKEN", "RECAPTCHA_SECRET_KEY"]) required(key);
+  if (previewTesting()) {
+    required("AIRTABLE_TEST_SCHEMA_MAP");
+    required("FTR_TEST_OUTBOX_TABLE");
+    return;
+  }
+  for (const key of ["FTR_GMAIL_ADDRESS", "FTR_GMAIL_APP_PASSWORD"]) required(key);
   if (formId !== 6) required("FTR_ADMIN_EMAIL");
   if (formId === 5 || formId === 6) required("FTR_MAILCHIMP_API_KEY");
 }

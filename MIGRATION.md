@@ -23,6 +23,10 @@ The public domain has **not** switched. `FTR_STANDALONE` defaults to false, so t
 
 ## Validation and cutover
 
+- The migration preview uses `FTR_INTEGRATION_TEST=true`, an isolated Airtable base, a test-only Airtable token, and Stripe's restricted test key. `AIRTABLE_TEST_SCHEMA_MAP` maps the existing table/field IDs to that base's copies. Preview writes to the production base, live Stripe keys in preview, test Stripe keys in production, and test CAPTCHA settings in production fail closed.
+- In this preview, notification workflows write rendered emails, intended recipients, and Mailchimp requests to the test base's `FTR_TEST_OUTBOX_TABLE`; no real messages or subscriptions are sent. This validates workflow execution and content separately from the final authorized live email check. Production continues using Gmail and Mailchimp.
+- Google's documented v2 test keys are configured only on the migration branch. The server still calls Google's verification endpoint and checks its test hostname. Production uses the original reCAPTCHA credential.
+
 - `npm run test:standalone` runs offline mapping, retry, CAPTCHA, email escaping, and donation checks without contacting any external service. Run `npm run lint`, `npm run typecheck`, `npm run build`, and `npm audit --omit=dev` too.
 - Exercise all form branches in an isolated preview: 1–5 names, optional organization/volunteer fields, newsletter, contact, story invitation, admin emails, and Mailchimp preferences. Confirm records and recipients, and replay an entry to verify no duplicate rows or notifications.
 - Complete a Stripe test payment, confirm the Airtable record and emails, replay the webhook, and verify invalid signatures and unpaid sessions create no donation. Also verify cancellation and the neutral return-page message.
